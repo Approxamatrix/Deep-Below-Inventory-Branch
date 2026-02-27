@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://5ocqnf6gf33f"]
+
+[ext_resource type="Texture2D" uid="uid://bkea0l0wrx0mt" path="res://icon.svg" id="1_0weqe"]
+
+[node name="Control" type="Control" unique_id=216591526]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1788.0
+offset_bottom = -946.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemIcon" type="TextureRect" parent="." unique_id=2112496419]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.97
+anchor_bottom = 0.95500004
+offset_right = -88.04001
+offset_bottom = -87.97001
+texture = ExtResource("1_0weqe")
+
+[node name="ItemAmtLabel" type="Label" parent="." unique_id=653417168]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74200004
+anchor_top = 0.70900005
+anchor_right = 0.88600004
+anchor_bottom = 0.88100004
+offset_left = 0.055992126
+offset_top = -0.0060043335
+offset_right = 0.04799652
+offset_bottom = -0.054008484
+text = "64"
+horizontal_alignment = 1
