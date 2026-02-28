@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cm0uyiffvsb2r"]
 
 [ext_resource type="Script" uid="uid://f8ejg7m7r4xj" path="res://Scripts/InventorySystem/InventoryGUIManager.gd" id="1_5yrjp"]
-[ext_resource type="Script" path="res://Scripts/InventorySystem/InventoryManager.gd" id="1_5208y"]
 [ext_resource type="PackedScene" uid="uid://5ocqnf6gf33f" path="res://Scenes/InventorySystem/ItemSlot.tscn" id="1_m6as1"]
+[ext_resource type="Script" uid="uid://36k4xijrikdk" path="res://Scripts/InventorySystem/InventoryNode.gd" id="3_iwnlx"]
+[ext_resource type="Resource" uid="uid://bt523bm3ixxoo" path="res://Resources/Inventory/Inventory.tres" id="4_xdakr"]
 
-[node name="Control" type="Control" unique_id=14087089]
+[node name="Control" type="Control" unique_id=14087089 node_paths=PackedStringArray("InvNode", "InvUI")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,22 +13,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5yrjp")
+InvNode = NodePath("InventoryNode")
+InvUI = NodePath("GridContainer")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=606830378]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.29791668
-anchor_top = 0.37962964
-anchor_right = 0.76500005
-anchor_bottom = 0.754
-offset_left = -18.0
-offset_right = 0.19995117
-offset_bottom = -0.32000732
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.2640625
+anchor_top = 0.3314815
+anchor_right = 0.73645836
+anchor_bottom = 0.675
 theme_override_constants/h_separation = 130
 theme_override_constants/v_separation = 130
 columns = 7
+metadata/_edit_use_anchors_ = true
 
 [node name="Control" parent="GridContainer" unique_id=216591526 instance=ExtResource("1_m6as1")]
 layout_mode = 2
@@ -92,6 +91,7 @@ layout_mode = 2
 [node name="Control21" parent="GridContainer" unique_id=780889474 instance=ExtResource("1_m6as1")]
 layout_mode = 2
 
-[node name="InventoryNode" type="Node" parent="." unique_id=1848809809]
-script = ExtResource("1_5208y")
-metadata/_custom_type_script = "uid://dot7itn3pch5t"
+[node name="InventoryNode" type="Node" parent="." unique_id=1721266667]
+script = ExtResource("3_iwnlx")
+InventoryData = ExtResource("4_xdakr")
+metadata/_custom_type_script = "uid://36k4xijrikdk"

@@ -58,3 +58,8 @@ func remove_item(item : ItemData):
 		
 
 	pass
+
+func get_inventory_data():
+	
+	
+	return InventoryData
