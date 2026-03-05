@@ -6,7 +6,7 @@ extends Control
 @export var InvUI : GridContainer
 
 
-var selecteditem = null
+var selecteditem : InventoryButton = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -104,13 +104,31 @@ func populate_inventory_ui():
 
 func idk(buttonref : InventoryButton):
 	
-	print("idk")
-	print(buttonref)
+	#print("idk")
 	
 	if selecteditem == null:
 		
-		buttonref = selecteditem
+		selecteditem = buttonref 
+		print(selecteditem)
+
 		
+		pass
+	else:
+		
+		print("swapping items...")
+		
+		#get the index of the items in the inventory node
+		
+		
+		#
+		#var selectedindex = InvNode.get_slot_data(selecteditem.get_index())
+		#var otheritemindex = InvNode.get_slot_data(buttonref.get_index())
+		#
+		InvNode.swap_slots(selecteditem.get_index(),buttonref.get_index())
+
+
+		selecteditem = null
+
 		pass
 	
 	
