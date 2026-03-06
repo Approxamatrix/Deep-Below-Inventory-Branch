@@ -1,5 +1,5 @@
 extends Control
-class_name Hotbar
+class_name HotbarGUIManager
 
 @export var InvNode : InventoryNode
 @export var InvUI : Control

@@ -1,5 +1,5 @@
 extends Control
-
+class_name InventoryGUIManager
 
 #@export var GUINode : Node
 @export var InvNode : InventoryNode
@@ -102,7 +102,15 @@ func populate_inventory_ui():
 	
 	pass
 
+
+
 func idk(buttonref : InventoryButton):
+	
+	
+	
+	
+	
+	
 	
 	#print("idk")
 	
@@ -124,8 +132,9 @@ func idk(buttonref : InventoryButton):
 		#var selectedindex = InvNode.get_slot_data(selecteditem.get_index())
 		#var otheritemindex = InvNode.get_slot_data(buttonref.get_index())
 		#
-		InvNode.swap_slots(selecteditem.get_index(),buttonref.get_index())
-
+		#InvNode.swap_slots(selecteditem.get_index(),buttonref.get_index())
+		
+		InvNode.swap_slots(selecteditem,buttonref)
 
 		selecteditem = null
 

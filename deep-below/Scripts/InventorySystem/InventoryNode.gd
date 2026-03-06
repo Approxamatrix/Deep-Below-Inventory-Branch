@@ -28,26 +28,77 @@ func remove_item(item : ItemData):
 				InventoryAutoload.UpdateInvGUI.emit()
 			else: pass
 
-func swap_slots(slot1 : int, slot2 : int):
-	
-	
-	var oldslot1 = InventoryData.SlotArray[slot1]
-	var oldslot2 =  InventoryData.SlotArray[slot2]
-	#
-	#slot1 = slot2
-	#slot2 = oldslot1
 
-	InventoryData.SlotArray[slot1] = oldslot2
-	InventoryData.SlotArray[slot2] = oldslot1
+func swap_slots(slot1 : InventoryButton, slot2 : InventoryButton):
+	
+	
+	##get the reference of the itemslots 
+	
+	var slot1data : SlotData = get_specific_inventory_slotdata(slot1)
+	var slot2data : SlotData = get_specific_inventory_slotdata(slot2)
+	
+	var oldslot1data = slot1data
+	var oldslot2data = slot2data
+	
 	
 	#
+	#var oldslot1 = InventoryData.SlotArray[slot1]
+	#var oldslot2 =  InventoryData.SlotArray[slot2]
+#
+	#InventoryData.SlotArray[slot1] = oldslot2
+	
+	set_specific_inventory_slotdata(slot2,oldslot1data)
+	set_specific_inventory_slotdata(slot1,oldslot2data)
+	
+	
 	InventoryAutoload.UpdateInvGUI.emit()
 	
 	pass
 
+
+
 func get_inventory_data():
 	return InventoryData
+
+
+
+func get_specific_inventory_slotdata(buttonref : InventoryButton):
 	
+	
+	if buttonref.get_parent().get_parent() is InventoryGUIManager:
+		
+		return InventoryData.SlotArray[buttonref.get_index()]
+		
+	elif buttonref.get_parent().get_parent() is HotbarGUIManager:
+		
+		return InventoryData.HotBar[buttonref.get_index()]
+		
+	else:
+		
+		pass
+	
+	
+	pass
+	
+
+func set_specific_inventory_slotdata(buttonref : InventoryButton,buttonslotdata : SlotData):
+	
+	if buttonref.get_parent().get_parent() is InventoryGUIManager:
+		
+		InventoryData.SlotArray[buttonref.get_index()] = buttonslotdata
+		
+	elif buttonref.get_parent().get_parent() is HotbarGUIManager:
+		
+		InventoryData.HotBar[buttonref.get_index()] = buttonslotdata
+		
+	else:
+		
+		pass
+	
+	
+	pass
+
+
 func get_slot_data(index : int):
 	
 	
