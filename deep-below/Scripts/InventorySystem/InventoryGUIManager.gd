@@ -4,6 +4,7 @@ class_name InventoryGUIManager
 #@export var GUINode : Node
 @export var InvNode : InventoryNode
 @export var InvUI : GridContainer
+@export var HotbarUI : HBoxContainer
 
 
 var selecteditem : InventoryButton = null
@@ -17,8 +18,10 @@ func _ready() -> void:
 	if InvNode != null:
 		prepare_button_signals()
 		if InvNode.InventoryData != null:
-			prepare_inventory_icons()
+			prepare_inventory_icons(InvUI)
+			prepare_inventory_icons(HotbarUI)
 			populate_inventory_ui()
+			populate_hotbar_ui()
 			
 			pass
 	else:
@@ -48,10 +51,10 @@ func prepare_button_signals():
 func _process(delta: float) -> void:
 	pass
 
-func prepare_inventory_icons():
+func prepare_inventory_icons(InvNode : Control):
 	
 	if InvUI != null:
-		for items in InvUI.get_children():
+		for items in InvNode.get_children():
 			
 			items.Itemicon.texture = null
 			items.Itemamt.text = " "
@@ -140,5 +143,37 @@ func idk(buttonref : InventoryButton):
 
 		pass
 	
+	
+	
+	pass
+ 
+
+
+func populate_hotbar_ui():
+	var InvData = InvNode.get_inventory_data()
+	var HotbarData = InvData.HotBar
+	##get the hotbar data from the inventory data
+	
+	for items in HotbarData.size():
+		
+		if InvData.HotBar[items] != null:
+			if InvData.HotBar[items].Itemdata != null:
+				print(InvData.HotBar[items].Itemdata)
+				HotbarUI.get_child(items).Itemicon.texture = InvData.HotBar[items].Itemdata.Itemtexture
+				HotbarUI.get_child(items).Itemamt.text = str(InvData.HotBar[items].Itemcount)
+				pass
+			else:
+				print("no itemdata found")
+				HotbarUI.get_child(items).Itemicon.texture = null
+				HotbarUI.get_child(items).Itemamt.text = " "
+				
+				pass
+		pass
+			
+		
+		
+		pass
+	
+	##loop through the nodes in the hotbar gui
 	
 	pass

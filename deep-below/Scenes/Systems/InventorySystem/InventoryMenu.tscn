@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://5ocqnf6gf33f" path="res://Scenes/Systems/InventorySystem/ItemSlot.tscn" id="1_m6as1"]
 [ext_resource type="Script" uid="uid://36k4xijrikdk" path="res://Scripts/InventorySystem/InventoryNode.gd" id="3_iwnlx"]
 [ext_resource type="Resource" uid="uid://bt523bm3ixxoo" path="res://Resources/Inventory/Inventory.tres" id="4_xdakr"]
-[ext_resource type="PackedScene" uid="uid://de3043prr1ege" path="res://Scenes/InventorySystem/Hotbar/HotbarGUI.tscn" id="5_6yph8"]
 
 [node name="Control" type="Control" unique_id=14087089]
 layout_mode = 3
@@ -19,13 +18,14 @@ script = ExtResource("3_iwnlx")
 InventoryData = ExtResource("4_xdakr")
 metadata/_custom_type_script = "uid://36k4xijrikdk"
 
-[node name="Control" type="Control" parent="." unique_id=351551137 node_paths=PackedStringArray("InvNode", "InvUI")]
+[node name="Control" type="Control" parent="." unique_id=351551137 node_paths=PackedStringArray("InvNode", "InvUI", "HotbarUI")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_5yrjp")
 InvNode = NodePath("../InventoryNode")
 InvUI = NodePath("GridContainer")
+HotbarUI = NodePath("HBoxContainer")
 
 [node name="GridContainer" type="GridContainer" parent="Control" unique_id=606830378]
 layout_mode = 1
@@ -106,10 +106,30 @@ layout_mode = 2
 [node name="Control21" parent="Control/GridContainer" unique_id=780889474 instance=ExtResource("1_m6as1")]
 layout_mode = 2
 
-[node name="Control2" parent="." unique_id=911003450 node_paths=PackedStringArray("InvNode") instance=ExtResource("5_6yph8")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=357699232]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.53489584
-anchor_bottom = 0.16944444
-InvNode = NodePath("../InventoryNode")
+anchor_left = 13.625
+anchor_top = 22.2
+anchor_right = 35.59948
+anchor_bottom = 25.775
+theme_override_constants/separation = 140
 metadata/_edit_use_anchors_ = true
+
+[node name="Button" parent="Control/HBoxContainer" unique_id=1646267367 instance=ExtResource("1_m6as1")]
+layout_mode = 2
+
+[node name="Button2" parent="Control/HBoxContainer" unique_id=403119083 instance=ExtResource("1_m6as1")]
+layout_mode = 2
+
+[node name="Button3" parent="Control/HBoxContainer" unique_id=1645462169 instance=ExtResource("1_m6as1")]
+layout_mode = 2
+
+[node name="Button4" parent="Control/HBoxContainer" unique_id=1855437854 instance=ExtResource("1_m6as1")]
+layout_mode = 2
+
+[node name="Button5" parent="Control/HBoxContainer" unique_id=669422065 instance=ExtResource("1_m6as1")]
+layout_mode = 2
+
+[node name="Button6" parent="Control/HBoxContainer" unique_id=1047041817 instance=ExtResource("1_m6as1")]
+layout_mode = 2
