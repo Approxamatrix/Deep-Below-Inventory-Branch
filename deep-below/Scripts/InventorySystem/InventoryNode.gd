@@ -83,6 +83,12 @@ func get_specific_inventory_slotdata(buttonref : InventoryButton):
 
 func set_specific_inventory_slotdata(buttonref : InventoryButton,buttonslotdata : SlotData):
 	
+	if buttonslotdata == null:
+		
+		buttonslotdata = SlotData.new()
+		
+		pass
+	
 	if buttonref.get_parent() is GridContainer:
 		
 		InventoryData.SlotArray[buttonref.get_index()] = buttonslotdata
