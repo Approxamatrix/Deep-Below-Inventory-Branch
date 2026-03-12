@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5ocqnf6gf33f"]
 
-[ext_resource type="Script" uid="uid://dp1gmf8flj5nx" path="res://Scripts/InventorySystem/InventoryButton.gd" id="1_02b50"]
+[ext_resource type="Script" uid="uid://dp1gmf8flj5nx" path="res://Scripts/Systems/InventorySystem/InventoryButton.gd" id="1_02b50"]
 [ext_resource type="Texture2D" uid="uid://dn24s7y6jx0rk" path="res://Assets/Items/InventoryIcons/repair_tool_icon.png" id="2_02b50"]
 
 [node name="Button" type="Button" unique_id=1646267367 node_paths=PackedStringArray("Itemicon", "Itemamt")]

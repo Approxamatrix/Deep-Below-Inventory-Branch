@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c2fbby7om3xgb" path="res://Assets/Audio/SFX/metallic_break.mp3" id="4_welia"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2w60"]
-radius = 1.0
+radius = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c74g0"]
 resource_name = "material_0"
@@ -80,6 +80,7 @@ indicator_texture = ExtResource("3_ii82e")
 interaction_sound = ExtResource("4_welia")
 
 [node name="PickupRange" type="CollisionShape3D" parent="InputDetector" unique_id=499027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24270666, 0)
 shape = SubResource("SphereShape3D_n2w60")
 debug_color = Color(1, 1, 1, 0.078431375)
 debug_fill = false
@@ -112,6 +113,7 @@ transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 mesh = SubResource("SphereMesh_en1eo")
 surface_material_override/0 = ExtResource("4_ge75l")
 
-[connection signal="body_entered" from="InputDetector" to="." method="_on_input_detector_body_entered"]
-[connection signal="body_exited" from="InputDetector" to="." method="_on_input_detector_body_exited"]
+[connection signal="area_entered" from="InputDetector" to="." method="_on_input_detector_body_entered"]
+[connection signal="area_exited" from="InputDetector" to="." method="_on_input_detector_body_exited"]
 [connection signal="input_detected" from="InputDetector" to="." method="_on_input_detector_input_detected"]
+[connection signal="visibility_changed" from="InputDetector/PickupRange" to="." method="_on_visibility_changed"]

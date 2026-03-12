@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://bvarymjwoypr1"]
+
+[ext_resource type="Material" uid="uid://boe1jwun3ibtb" path="res://Assets/3D/Materials/slightly_rusty_metal.tres" id="1_jlcet"]
+
+[sub_resource type="TextMesh" id="TextMesh_5haii"]
+text = "U"
+pixel_size = 0.05
+depth = 0.15
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6c6wb"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_tjtai"]
+radius = 0.25
+height = 0.35
+is_hemisphere = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_rnlmm"]
+radius = 0.2
+height = 0.075
+is_hemisphere = true
+
+[sub_resource type="Gradient" id="Gradient_5haii"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.8148148)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6c6wb"]
+gradient = SubResource("Gradient_5haii")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjtai"]
+transparency = 4
+albedo_texture = SubResource("GradientTexture2D_6c6wb")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1846"]
+next_pass = SubResource("StandardMaterial3D_tjtai")
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.8009633, 0.5615497, 1)
+emission_energy_multiplier = 3.0
+
+[node name="Spotlight" type="Node3D" unique_id=125133609]
+
+[node name="Stand" type="MeshInstance3D" parent="." unique_id=2066843682]
+mesh = SubResource("TextMesh_5haii")
+surface_material_override/0 = ExtResource("1_jlcet")
+
+[node name="Hinge" type="MeshInstance3D" parent="." unique_id=890216603]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 0, 0.21622658, 0)
+mesh = SubResource("CylinderMesh_6c6wb")
+surface_material_override/0 = ExtResource("1_jlcet")
+
+[node name="Housing" type="MeshInstance3D" parent="Hinge" unique_id=1687890092]
+transform = Transform3D(-4.371139e-08, -1, 8.742278e-08, 1, -4.371138e-08, 8.7422784e-08, -8.742278e-08, 8.7422784e-08, 1, 0.13095975, 5.724445e-09, 0)
+mesh = SubResource("SphereMesh_tjtai")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_jlcet")
+
+[node name="Bulb" type="MeshInstance3D" parent="Hinge" unique_id=2077118558]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.13095975, 5.724445e-09, 0)
+mesh = SubResource("SphereMesh_rnlmm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_i1846")
+
+[node name="Source" type="SpotLight3D" parent="." unique_id=1995234926]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.9999998, 0.8502197, 0.62580764, 1)
+light_energy = 4.0
+spot_range = 20.0

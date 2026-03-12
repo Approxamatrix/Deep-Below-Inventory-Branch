@@ -137,7 +137,7 @@ _data = {
 editor_description = "Add a Collision2D node as a child of this node to determine the range at which it will detect inputs.
 Without any collision shape it will not detect any inputs whatsoever."
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("1_8vb68")
 indicator_texture = ExtResource("2_6yogi")
 
@@ -170,5 +170,5 @@ billboard = 1
 fixed_size = true
 texture = ExtResource("3_qvfkg")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c61mgkiexjd7l"]
+
+[ext_resource type="Texture2D" uid="uid://bv21uj773ayd3" path="res://Assets/2D/VFX/detailed puffycloud.png" id="1_injgb"]
+
+[sub_resource type="Curve" id="Curve_6a56j"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wt12p"]
+curve = SubResource("Curve_6a56j")
+
+[sub_resource type="Gradient" id="Gradient_injgb"]
+colors = PackedColorArray(0.35880962, 0.25993717, 0.16496295, 1, 0.6117138, 0.46120018, 0.31792557, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6a56j"]
+gradient = SubResource("Gradient_injgb")
+
+[sub_resource type="Curve" id="Curve_ghp5p"]
+_data = [Vector2(0.18421052, 0.9844358), 0.0, 0.0, 0, 0, Vector2(0.44736844, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_54q66"]
+curve = SubResource("Curve_ghp5p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7dwin"]
+particle_flag_rotate_y = true
+angle_min = -179.99998
+angle_max = 180.00002
+angle_curve = SubResource("CurveTexture_wt12p")
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, -1, 0)
+scale_min = 0.5
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_54q66")
+color_initial_ramp = SubResource("GradientTexture1D_6a56j")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8xrw"]
+transparency = 4
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6283151, 0.62831503, 0.6283149, 1)
+albedo_texture = ExtResource("1_injgb")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_d8bat"]
+material = SubResource("StandardMaterial3D_x8xrw")
+
+[node name="DustParticles" type="GPUParticles3D" unique_id=216348937]
+cast_shadow = 0
+amount = 64
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7dwin")
+draw_pass_1 = SubResource("QuadMesh_d8bat")

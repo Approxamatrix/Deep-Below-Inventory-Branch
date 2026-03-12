@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cpvvosv0k21cm"]
 
 [ext_resource type="PackedScene" uid="uid://bmdntl6d4pa0o" path="res://Scenes/Player/player.tscn" id="1_pkxsh"]
-[ext_resource type="PackedScene" uid="uid://dd8gyq7v8nh8w" path="res://Scenes/Game World/Props/EnvironmentalDecorations/basic_rock.tscn" id="3_3k08h"]
-[ext_resource type="PackedScene" uid="uid://6tnqrvf8knep" path="res://Scenes/Game World/Items/resource_spawner.tscn" id="3_pf2rt"]
+[ext_resource type="PackedScene" uid="uid://dlap5bpigh3k4" path="res://Scenes/Game World/Items/Minerals/mineral_rock.tscn" id="2_g1swy"]
 [ext_resource type="PackedScene" uid="uid://d2xi1g2kjrwfw" path="res://Scenes/Game World/Items/Minerals/lithium.tscn" id="4_1xi28"]
-[ext_resource type="PackedScene" uid="uid://r0idd4ksgjjv" path="res://Scenes/Game World/Items/Minerals/nickel.tscn" id="5_ao481"]
+[ext_resource type="PackedScene" uid="uid://r0idd4ksgjjv" path="res://Scenes/Game World/Items/Minerals/iron.tscn" id="5_ao481"]
 [ext_resource type="PackedScene" uid="uid://d1qqt21kp1l7w" path="res://Scenes/Game World/Items/Minerals/sulphur.tscn" id="6_gb310"]
 [ext_resource type="PackedScene" uid="uid://dxaiti3wqm0d0" path="res://Scenes/Game World/Items/Minerals/lead.tscn" id="7_8v3cd"]
+[ext_resource type="PackedScene" uid="uid://dxenuytrnre85" path="res://Scenes/Game World/Structures/diving_rig.tscn" id="7_ao481"]
 
 [sub_resource type="Gradient" id="Gradient_g1swy"]
 colors = PackedColorArray(0, 0, 0, 1, 0.59997064, 0.73147446, 1, 1)
@@ -131,10 +131,11 @@ debug_color = Color(1, 1, 1, 0.41960785)
 debug_fill = false
 
 [node name="Player" parent="." unique_id=287700029 instance=ExtResource("1_pkxsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5244589, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6554518, 0)
 is_underwater = true
 
 [node name="Testlight" type="OmniLight3D" parent="Player" unique_id=1177837631]
+visible = false
 light_color = Color(1, 0.9137255, 0.6862745, 1)
 shadow_enabled = true
 shadow_opacity = 0.75
@@ -150,38 +151,29 @@ draw_pass_1 = SubResource("QuadMesh_gb310")
 
 [node name="MineralTesting" type="Node3D" parent="." unique_id=137653061]
 
-[node name="BasicRock" parent="MineralTesting" unique_id=2097455611 instance=ExtResource("3_3k08h")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.788013, -0.33151734, -5.0564165)
-skeleton = NodePath("../..")
+[node name="MineralStone1" parent="MineralTesting" unique_id=799476759 instance=ExtResource("2_g1swy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.327171, 0, -8.389384)
+mineral_scene = ExtResource("5_ao481")
+respawn_time = 5.0
+respawn_variance = 4.0
 
-[node name="ResourceSpawner" parent="MineralTesting/BasicRock" unique_id=1675671955 instance=ExtResource("3_pf2rt")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.38971353, 0)
-resource_scene = ExtResource("4_1xi28")
-respawn_time = 10.0
+[node name="MineralStone2" parent="MineralTesting" unique_id=1836350131 instance=ExtResource("2_g1swy")]
+transform = Transform3D(0.519549, 0, -0.8544407, 0, 1, 0, 0.8544407, 0, 0.519549, 2.5700734, 0, -9.944742)
+mineral_scene = ExtResource("6_gb310")
+respawn_time = 5.0
+respawn_variance = 4.0
 
-[node name="BasicRock2" parent="MineralTesting" unique_id=1383092690 instance=ExtResource("3_3k08h")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.211987, -0.33151734, -9.0564165)
-skeleton = NodePath("../..")
+[node name="MineralStone3" parent="MineralTesting" unique_id=1152081797 instance=ExtResource("2_g1swy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2094269, 0, 14.772387)
+mineral_scene = ExtResource("4_1xi28")
+respawn_time = 5.0
+respawn_variance = 4.0
 
-[node name="ResourceSpawner" parent="MineralTesting/BasicRock2" unique_id=1556490963 instance=ExtResource("3_pf2rt")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.38971353, 0)
-resource_scene = ExtResource("5_ao481")
-respawn_time = 12.0
+[node name="MineralStone4" parent="MineralTesting" unique_id=1162280339 instance=ExtResource("2_g1swy")]
+transform = Transform3D(0.44704103, 0, -0.8945134, 0, 1, 0, 0.8945134, 0, 0.44704103, 4.457616, 0, 9.429903)
+mineral_scene = ExtResource("7_8v3cd")
+respawn_time = 5.0
+respawn_variance = 4.0
 
-[node name="BasicRock3" parent="MineralTesting" unique_id=1142458408 instance=ExtResource("3_3k08h")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.211987, -0.33151734, -1.0564165)
-skeleton = NodePath("../..")
-
-[node name="ResourceSpawner" parent="MineralTesting/BasicRock3" unique_id=121190049 instance=ExtResource("3_pf2rt")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.38971353, 0)
-resource_scene = ExtResource("6_gb310")
-respawn_time = 14.0
-
-[node name="BasicRock4" parent="MineralTesting" unique_id=1399276642 instance=ExtResource("3_3k08h")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.3657103, -0.33151734, 3.1208582)
-skeleton = NodePath("../..")
-
-[node name="ResourceSpawner" parent="MineralTesting/BasicRock4" unique_id=1736774031 instance=ExtResource("3_pf2rt")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.38971353, 0)
-resource_scene = ExtResource("7_8v3cd")
-respawn_time = 14.0
+[node name="DivingBell" parent="." unique_id=2095712509 instance=ExtResource("7_ao481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

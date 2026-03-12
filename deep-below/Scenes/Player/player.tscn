@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://bmdntl6d4pa0o"]
 
 [ext_resource type="Script" uid="uid://cedigcnhfr3wq" path="res://Scripts/Player/PlayerSystems/player.gd" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://72g4glmvbft0" path="res://Assets/2D/Icons/interaction_icon.svg" id="2_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://c61mgkiexjd7l" path="res://Scenes/Game World/VFX/dust_particles.tscn" id="3_xpcdj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tugb3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uvnfx"]
+height = 4.0
+radius = 0.001
 
 [node name="Player" type="CharacterBody3D" unique_id=287700029]
 collision_layer = 3
@@ -19,6 +25,16 @@ mesh = SubResource("CapsuleMesh_tugb3")
 [node name="CamPositioner" type="RemoteTransform3D" parent="." unique_id=596061447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 remote_path = NodePath("../Downscaler/SubViewport/Camera")
+
+[node name="Interacter" type="Area3D" parent="CamPositioner" unique_id=290122420]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Hitbox" type="CollisionShape3D" parent="CamPositioner/Interacter" unique_id=1968607111]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -2)
+shape = SubResource("CylinderShape3D_uvnfx")
+debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Downscaler" type="SubViewportContainer" parent="." unique_id=570067963]
 editor_description = "Downscales camera quality
@@ -36,3 +52,13 @@ render_target_update_mode = 4
 
 [node name="Camera" type="Camera3D" parent="Downscaler/SubViewport" unique_id=548383720]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=973313341]
+modulate = Color(1, 0.91764706, 0.8862745, 1)
+position = Vector2(960, 540)
+rotation = 0.7853982
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_a3d8c")
+
+[node name="DustParticles" parent="." unique_id=216348937 instance=ExtResource("3_xpcdj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

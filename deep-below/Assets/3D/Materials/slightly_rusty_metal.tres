@@ -1,0 +1,62 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://boe1jwun3ibtb"]
+
+[sub_resource type="Gradient" id="Gradient_ggj3b"]
+colors = PackedColorArray(0.04455792, 0.044557832, 0.044557832, 1, 0.24840033, 0.24840012, 0.24840012, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dhcxk"]
+noise_type = 3
+fractal_octaves = 1
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ijnwq"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_dhcxk")
+color_ramp = SubResource("Gradient_ggj3b")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_dhcxk"]
+offsets = PackedFloat32Array(0.086419754, 0.28395063)
+colors = PackedColorArray(0.43931207, 0.051781453, 2.4065375e-08, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ijnwq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3x2js"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ijnwq")
+color_ramp = SubResource("Gradient_dhcxk")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5haii"]
+frequency = 0.0323
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6c6wb"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_5haii")
+seamless = true
+as_normal_map = true
+bump_strength = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjtai"]
+transparency = 4
+albedo_texture = SubResource("NoiseTexture2D_3x2js")
+metallic = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_6c6wb")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ggj3b"]
+frequency = 0.0062
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dhcxk"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ggj3b")
+seamless = true
+as_normal_map = true
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_tjtai")
+albedo_texture = SubResource("NoiseTexture2D_ijnwq")
+metallic = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_dhcxk")
+uv1_scale = Vector3(0.5, 1, 0.5)

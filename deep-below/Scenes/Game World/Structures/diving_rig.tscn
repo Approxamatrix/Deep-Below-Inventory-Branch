@@ -1,0 +1,646 @@
+[gd_scene format=4 uid="uid://dxenuytrnre85"]
+
+[ext_resource type="Script" uid="uid://3h3o56m2a34o" path="res://Scripts/Structures/diving_rig.gd" id="1_5haii"]
+[ext_resource type="Shader" uid="uid://cqkesplait1k4" path="res://Misc/texture_scroll_shader.tres" id="1_dhcxk"]
+[ext_resource type="Material" uid="uid://boe1jwun3ibtb" path="res://Assets/3D/Materials/slightly_rusty_metal.tres" id="1_ijnwq"]
+[ext_resource type="Texture2D" uid="uid://thjyrn4r4cm5" path="res://Assets/2D/Misc/chain_texture.png" id="3_3x2js"]
+[ext_resource type="PackedScene" uid="uid://bvarymjwoypr1" path="res://Scenes/Game World/Props/StructureDecorations/spotlight.tscn" id="5_6c6wb"]
+[ext_resource type="PackedScene" uid="uid://bn4f7tbyito0t" path="res://Scenes/Player/PlayerSystems/input_detector.tscn" id="5_tjtai"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgopd"]
+resource_name = "material_0"
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_etxwq"]
+resource_name = "hollow_box_HollowBox2"
+_surfaces = [{
+"aabb": AABB(-2, -2, -3, 4, 4, 6),
+"attribute_data": PackedByteArray("O9gAAP/f/x///8Mn///DJ//f/x///zvYwycAADvY//872AAAO9gAAP8f/x//3/8f//872P/f/9872P////872P/f/x//3//f///DJwAAwycAADvYO9j////f/9/DJ////9//3///O9j/3/8fO9j/////O9j/3//fO9j////f/9/DJ/////872P//wycAADvYO9j//8MnAADDJ/////872P//wyf/3/8f///DJzvYAAD/3/8fO9gAAP8f/x//3/8fO9gAAMMnAAD/H/8f///DJwAAO9j//zvYwycAAAAAwyf/H/8f/x//HwAAwyf/H//fwyf////f/9//H//fwyf///8f/98AADvYO9gAAMMnAAA72P//AAA72P8f/98AAMMnwyf////f/9//H//fAADDJwAAO9j/H//fO9j//8MnAADDJ///wyf///8f/98AADvYAAA72P//wycAAMMnO9gAAMMnAAD/H/8f/x//HwAAwyf/H//f/x//H8MnAAAAAMMnJvYAACb2///YCQAA///YCf//JvYAACb2///YCQAAJvYAANgJ2An//9gJAAAm9v////8m9gAAJvb//9gJJvb//9gJ///YCQAA2AkAACb2AAAm9v/////YCQAAJvYAANgJfKUm9oJaJvaCWtgJfKXYCXylJvaCWtgJJvaCWib2fKXYCXyl2Al8pdgJglom9oJaJvaCWib2fKXYCXyl2AmCWib2glrYCXylfKXYCXylJvaCWtgJglom9oJa2Al8pSb2"),
+"format": 34896613399,
+"index_count": 144,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsAPAA9AD4APwBAAEEAQgBDAEQARQBGAEcASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAXQBeAF8AYABhAGIAYwBkAGUAZgBnAGgAaQBqAGsAbABtAG4AbwBwAHEAcgBzAHQAdQB2AHcAeAB5AHoAewB8AH0AfgB/AIAAgQCCAIMAhACFAIYAhwCIAIkAigCLAIwAjQCOAI8A"),
+"material": SubResource("StandardMaterial3D_mgopd"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 144,
+"vertex_data": PackedByteArray("wycAAAAAAAD/H/8fAAAAAAAAwycAAAAAAADDJwAAAAD/H/8fAAAAAAAAO9gAAAAAAAA72AAAqioAAMMn//+qKgAAwycAAKoqwycAAAAAAAD/3/8fAAAAAP8f/x8AAAAAAADDJ///AAD/H/8f//8AAMMnAAD//wAAAADDJ///AAD/H//f//8AAP8f/x///wAAwycAAAAAqirDJwAA//+qKjvYAAD//6oqwycAAP//AAD/H/8f//8AADvYAAD//wAA/x//3wAAAAAAADvYAAAAAP8f/x8AAAAAwyf//wAAAAAAADvYAAAAAP8f/98AAAAAwyf//wAAAAD/H//fAAAAADvY//8AAAAAwyf//wAAqio72P//AACqKsMn/////6oqAADDJ///qioAADvYAACqKgAAO9j//6oqAADDJ///AAAAADvY//8AAP8f/9///wAAAAA72P//AADDJ/////8AAP8f/9///wAAwyf/////AAD/3//f//8AAP8f/9///wAAwycAAAAAAAA72AAAAAAAAP/f/x8AAAAAwycAAAAAqio72AAA//+qKjvYAAAAAKoqO9gAAAAAAAD//8MnAAAAAP/f/x8AAAAA/9//HwAAAAD//8MnAAAAAP/f/98AAAAAO9gAAP//AAD/H/8f//8AAP/f/x///wAAO9gAAP//AAD/3/8f//8AAP//wyf//wAA///DJ///qSr//zvY//+pKv//wycAAKkq///DJ///AAD/3/8f//8AAP//O9j//wAAO9j//wAAAAD/H//fAAAAAP/f/98AAAAA///DJwAAAAD//zvYAAAAAP/f/98AAAAA///DJwAAqSr//zvY//+pKv//O9gAAKkqO9j//wAAAAD/3//fAAAAAP//O9gAAAAAwyf/////qio72P//AACqKjvY/////6oqwyf/////AAA72P////8AAP/f/9///wAA/9//3///AAD//zvY//8AAP/f/x///wAA/9//3///AAA72P////8AAP//O9j//wAA/x//HwAAVNX/3/8fAABU1f8f/x///1TV/x//HwAAVNX/H/8f//9U1f8f/9///1TV/x//HwAAVNX/H//f//9U1f8f/98AAFTV/x//3///VNX/3//f//9U1f8f/98AAFTV/9//HwAAVNX/3//fAABU1f/f/x///1TV/9//HwAAVNX/3/8f//9U1f8f/x///1TV/9//3///VNX/3//fAABU1f8f/98AAFTV/9//H///VNX/3//fAABU1f/f/9///1TVAAA72AAAq+nDJ///AACr6cMn/////6vpAAA72P//q+kAADvYAACr6cMn/////6vpwycAAAAAq+kAAMMnAACr6QAAwyf//6vpAADDJ///q+nDJwAA//+r6cMnAAAAAKvpO9j//wAA/MX//zvYAAD8xf//O9j///zFO9j//////MU72P//AAD8xf//O9j///zFO9gAAAAAquk72AAA//+q6f//wycAAKrp///DJ///qun//8MnAACq6TvYAAD//6rp/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAVVWqqlVVqqpVVaqq/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAVFVUVVRVVFVUVVRV/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAVNWqKlTVqipU1aoqVVWqqlVVqqpVVaqq/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAVFVUVVRVVFVUVVRV/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAqqpVVaqqVVWqqlVV/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAqqpVVaqqVVWqqlVV/38AAP9/AAD/fwAAVNWqKlTVqipU1aoq/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAAVNWqKlTVqipU1aoqqqpVVaqqVVWqqlVVqqpVVaqqVVWqqlVVVFVUVVRVVFVUVVRVVVWqqlVVqqpVVaqqVNWqKlTVqipU1aoqVFVUVVRVVFVUVVRVVVWqqlVVqqpVVaqqCGoEtQhqBLUIagS1CGoEtQhqBLUIagS1+koJavpKCWr6Sglq+koJavpKCWr6Sglq/bn/HP25/xz9uf8c/bn/HP25/xz9uf8c9JX6SvSV+kr0lfpK9JX6SvSV+kr0lfpK")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3x2js"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 3.125
+
+[sub_resource type="BoxMesh" id="BoxMesh_5haii"]
+size = Vector3(3, 3, 0.35)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tjtai"]
+points = PackedVector3Array(-1.5238097, -1.5235113, -0.1987722, 1.4669541, 1.4666668, 0.175, 1.4669541, -1.4666668, 0.175, 1.5238097, 1.5235113, -0.1987722, -1.4669541, 1.4666668, 0.175, 1.5238097, -1.5235113, -0.1987722, -1.5238097, 1.5235113, -0.1987722, -1.4669541, -1.4666668, 0.175)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5haii"]
+size = Vector2(0.25, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c6wb"]
+transparency = 4
+albedo_color = Color(0.22430414, 0.22430411, 0.22430405, 1)
+albedo_texture = ExtResource("3_3x2js")
+uv1_scale = Vector3(1, 40, 1)
+texture_filter = 0
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="TextMesh" id="TextMesh_5haii"]
+text = "U"
+pixel_size = 0.05
+depth = 0.15
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6c6wb"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_tjtai"]
+radius = 0.25
+height = 0.35
+is_hemisphere = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_rnlmm"]
+radius = 0.2
+height = 0.075
+is_hemisphere = true
+
+[sub_resource type="Gradient" id="Gradient_5haii"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.8148148)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6c6wb"]
+gradient = SubResource("Gradient_5haii")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjtai"]
+transparency = 4
+albedo_texture = SubResource("GradientTexture2D_6c6wb")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1846"]
+next_pass = SubResource("StandardMaterial3D_tjtai")
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.8009633, 0.5615497, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjtai"]
+size = Vector3(0.25, 0.75, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tjtai"]
+size = Vector3(0.25, 1, 0.75)
+
+[sub_resource type="QuadMesh" id="QuadMesh_rnlmm"]
+size = Vector2(0.5, 2)
+
+[sub_resource type="Gradient" id="Gradient_i1846"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.29885057)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lrvyo"]
+gradient = SubResource("Gradient_i1846")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6w65f"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_lrvyo")
+uv1_scale = Vector3(2, 1, 1)
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hwb1n"]
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.5
+
+[sub_resource type="Gradient" id="Gradient_ggj3b"]
+colors = PackedColorArray(0.04455792, 0.044557832, 0.044557832, 1, 0.24840033, 0.24840012, 0.24840012, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dhcxk"]
+noise_type = 3
+fractal_octaves = 1
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ijnwq"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_dhcxk")
+color_ramp = SubResource("Gradient_ggj3b")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_dhcxk"]
+offsets = PackedFloat32Array(0.086419754, 0.28395063)
+colors = PackedColorArray(0.43931207, 0.051781453, 2.4065375e-08, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ijnwq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3x2js"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ijnwq")
+color_ramp = SubResource("Gradient_dhcxk")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5haii"]
+frequency = 0.0323
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6c6wb"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_5haii")
+seamless = true
+as_normal_map = true
+bump_strength = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dybxu"]
+transparency = 4
+albedo_texture = SubResource("NoiseTexture2D_3x2js")
+metallic = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_6c6wb")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ggj3b"]
+frequency = 0.0062
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dhcxk"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ggj3b")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d747f"]
+next_pass = SubResource("StandardMaterial3D_dybxu")
+albedo_color = Color(0.79897434, 4.379898e-06, 6.738305e-07, 1)
+albedo_texture = SubResource("NoiseTexture2D_ijnwq")
+metallic = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_dhcxk")
+uv1_scale = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rnlmm"]
+size = Vector3(0.1, 0.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iy803"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.31
+emission_enabled = true
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrvyo"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.31
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ijnwq"]
+size = Vector2(3.125, 6)
+
+[sub_resource type="Gradient" id="Gradient_3x2js"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5haii"]
+gradient = SubResource("Gradient_3x2js")
+
+[sub_resource type="Gradient" id="Gradient_6c6wb"]
+colors = PackedColorArray(0.21189454, 0.27717525, 0.4017733, 1, 0.40987146, 0.5015562, 0.6747904, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tjtai"]
+noise_type = 3
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rnlmm"]
+height = 1024
+noise = SubResource("FastNoiseLite_tjtai")
+color_ramp = SubResource("Gradient_6c6wb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i1846"]
+render_priority = 0
+shader = ExtResource("1_dhcxk")
+shader_parameter/ScrollDirection = Vector2(0.05, -0.05)
+shader_parameter/Texture = SubResource("NoiseTexture2D_rnlmm")
+shader_parameter/Color = Color(1, 1, 1, 0.20392157)
+shader_parameter/Transparency = 1.0
+shader_parameter/EmissionTexture = SubResource("GradientTexture2D_5haii")
+shader_parameter/EmissionStrength = 1.0
+
+[sub_resource type="Gradient" id="Gradient_ijnwq"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.2509804, 0.3019608, 0.47843137, 0.14901961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3x2js"]
+gradient = SubResource("Gradient_ijnwq")
+
+[sub_resource type="Animation" id="Animation_6c6wb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMesh/Doors/Door1/Hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.1415927, 3.1415927, -1.5707964)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMesh/Doors/Door2/Hinge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8.742278e-08, 8.742278e-08, 1.5707963)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WaterMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.6, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WaterMesh/WaterCast:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainMesh/Switch/SwitchHinge:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.7853982)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainMesh/Switch/Indicators/Indicator1:surface_material_override/0:emission")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainMesh/Switch/Indicators/Indicator2:surface_material_override/0:emission")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5haii"]
+resource_name = "cycle"
+length = 3.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMesh/Doors/Door1/Hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.1, 3.1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(3.1415927, 3.1415927, -1.5707964), Vector3(1.3089969, 3.1415927, -1.5707964)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMesh/Doors/Door2/Hinge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.1, 3.1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-8.742278e-08, 8.742278e-08, 1.5707963), Vector3(1.8325957, 0, 1.5707964)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WaterMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 1.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, -1.6, 0), Vector3(0, 1.51, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WaterMesh/WaterCast:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.1, 3.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainMesh/Switch/SwitchHinge:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.7853982), Vector3(0, 0, 0.7853982)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainMesh/Switch/Indicators/Indicator1:surface_material_override/0:emission")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 0, 0, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainMesh/Switch/Indicators/Indicator2:surface_material_override/0:emission")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6c6wb"]
+_data = {
+&"RESET": SubResource("Animation_6c6wb"),
+&"cycle": SubResource("Animation_5haii")
+}
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tjtai"]
+data = PackedVector3Array(-1.3787, -2, -3, -1.5001, -1.5001, -3, -2, -1.3787, -3, -2, -1.3787, -3, -1.5001, -1.5001, -3, -2, 1.3787, -3, -2, 1.3787, -3, -2, -1.3787, 3, -2, -1.3787, -3, -1.3787, -2, -3, 1.5, -1.5001, -3, -1.5001, -1.5001, -3, -2, -1.3787, 3, -1.5001, -1.5001, 3, -1.3787, -2, 3, -2, -1.3787, 3, -1.5001, 1.5, 3, -1.5001, -1.5001, 3, -1.3787, -2, -3, -1.3787, -2, 3, 1.3787, -2, 3, -1.3787, -2, 3, -1.5001, -1.5001, 3, 1.3787, -2, 3, -1.5001, 1.5, -3, -2, 1.3787, -3, -1.5001, -1.5001, -3, -1.3787, 2, -3, -2, 1.3787, -3, -1.5001, 1.5, -3, -1.3787, 2, -3, -1.5001, 1.5, -3, 1.3787, 2, -3, -1.3787, 2, -3, 1.3787, 2, -3, -1.3787, 2, 3, -2, -1.3787, 3, -2, 1.3787, -3, -2, 1.3787, 3, -2, -1.3787, 3, -2, 1.3787, 3, -1.5001, 1.5, 3, -2, 1.3787, 3, -1.3787, 2, 3, -1.5001, 1.5, 3, -1.3787, 2, 3, 1.5, 1.5, 3, -1.5001, 1.5, 3, -1.3787, -2, -3, 1.3787, -2, -3, 1.5, -1.5001, -3, -1.3787, -2, -3, 1.3787, -2, 3, 1.3787, -2, -3, 1.3787, -2, -3, 2, -1.3787, -3, 1.5, -1.5001, -3, 1.5, -1.5001, -3, 2, -1.3787, -3, 1.5, 1.5, -3, 1.3787, -2, 3, -1.5001, -1.5001, 3, 1.5, -1.5001, 3, 1.3787, -2, 3, 1.5, -1.5001, 3, 2, -1.3787, 3, 2, -1.3787, 3, 2, 1.3787, 3, 2, -1.3787, -3, 2, -1.3787, 3, 1.5, -1.5001, 3, 2, 1.3787, 3, 1.3787, 2, -3, -1.5001, 1.5, -3, 1.5, 1.5, -3, 2, -1.3787, -3, 2, 1.3787, -3, 1.5, 1.5, -3, 2, -1.3787, -3, 2, 1.3787, 3, 2, 1.3787, -3, 1.3787, 2, -3, 1.5, 1.5, -3, 2, 1.3787, -3, -1.3787, 2, 3, 1.3787, 2, -3, 1.3787, 2, 3, -1.3787, 2, 3, 1.3787, 2, 3, 1.5, 1.5, 3, 1.5, 1.5, 3, 2, 1.3787, 3, 1.5, -1.5001, 3, 1.5, 1.5, 3, 1.3787, 2, 3, 2, 1.3787, 3, -1.5001, -1.5001, -3, 1.5, -1.5001, -3, -1.5001, -1.5001, 3, -1.5001, -1.5001, -3, -1.5001, -1.5001, 3, -1.5001, 1.5, 3, -1.5001, -1.5001, -3, -1.5001, 1.5, 3, -1.5001, 1.5, -3, -1.5001, 1.5, 3, 1.5, 1.5, 3, -1.5001, 1.5, -3, 1.5, -1.5001, -3, 1.5, 1.5, -3, 1.5, -1.5001, 3, 1.5, -1.5001, -3, 1.5, -1.5001, 3, -1.5001, -1.5001, 3, 1.5, 1.5, 3, 1.5, 1.5, -3, -1.5001, 1.5, -3, 1.5, -1.5001, 3, 1.5, 1.5, -3, 1.5, 1.5, 3, -2, 1.3787, -3, -1.3787, 2, -3, -1.3787, 2, 3, -2, 1.3787, 3, -2, 1.3787, -3, -1.3787, 2, 3, -1.3787, -2, -3, -2, -1.3787, -3, -2, -1.3787, 3, -2, -1.3787, 3, -1.3787, -2, 3, -1.3787, -2, -3, 1.3787, 2, -3, 2, 1.3787, -3, 2, 1.3787, 3, 1.3787, 2, 3, 1.3787, 2, -3, 2, 1.3787, 3, 1.3787, -2, -3, 1.3787, -2, 3, 2, -1.3787, -3, 2, -1.3787, 3, 2, -1.3787, -3, 1.3787, -2, 3)
+
+[sub_resource type="TextMesh" id="TextMesh_dybxu"]
+text = "T"
+pixel_size = 0.075
+depth = 0.25
+
+[node name="DivingRig" type="Node3D" unique_id=2095712509]
+script = ExtResource("1_5haii")
+
+[node name="MainMesh" type="MeshInstance3D" parent="." unique_id=76920949]
+mesh = SubResource("ArrayMesh_etxwq")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Doors" type="Node3D" parent="MainMesh" unique_id=1412790805]
+
+[node name="Door1" type="Node3D" parent="MainMesh/Doors" unique_id=1831527266]
+
+[node name="Hinge" type="MeshInstance3D" parent="MainMesh/Doors/Door1" unique_id=1940308626]
+transform = Transform3D(4.371138e-08, -1, 8.742278e-08, 1, 4.371139e-08, 8.742278e-08, -8.7422784e-08, 8.742277e-08, 1, 0, -1.5, 3)
+mesh = SubResource("CylinderMesh_3x2js")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainMesh/Doors/Door1/Hinge" unique_id=1256418285]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.499, 0, 0)
+mesh = SubResource("BoxMesh_5haii")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Collision" type="StaticBody3D" parent="MainMesh/Doors/Door1/Hinge/Mesh" unique_id=746273829]
+
+[node name="Hitbox" type="CollisionShape3D" parent="MainMesh/Doors/Door1/Hinge/Mesh/Collision" unique_id=1335918668]
+shape = SubResource("ConvexPolygonShape3D_tjtai")
+
+[node name="Door2" type="Node3D" parent="MainMesh/Doors" unique_id=732650133]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Hinge" type="MeshInstance3D" parent="MainMesh/Doors/Door2" unique_id=2081229847]
+transform = Transform3D(7.549788e-08, -1, 8.742276e-08, 0.9999998, 7.54979e-08, 8.742276e-08, -8.742277e-08, 8.742277e-08, 0.9999998, 0, -1.5, 3)
+mesh = SubResource("CylinderMesh_3x2js")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainMesh/Doors/Door2/Hinge" unique_id=2115746453]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.499, 0, 0)
+mesh = SubResource("BoxMesh_5haii")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Collision" type="StaticBody3D" parent="MainMesh/Doors/Door2/Hinge/Mesh" unique_id=1037565180]
+
+[node name="Hitbox" type="CollisionShape3D" parent="MainMesh/Doors/Door2/Hinge/Mesh/Collision" unique_id=1315186556]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_tjtai")
+
+[node name="Chains" type="Node3D" parent="MainMesh" unique_id=1194798082]
+
+[node name="Chain1" type="MeshInstance3D" parent="MainMesh/Chains" unique_id=2035189699]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65, 10, 2.75)
+mesh = SubResource("QuadMesh_5haii")
+surface_material_override/0 = SubResource("StandardMaterial3D_6c6wb")
+
+[node name="Chain2" type="MeshInstance3D" parent="MainMesh/Chains" unique_id=575769868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 10, 2.75)
+mesh = SubResource("QuadMesh_5haii")
+surface_material_override/0 = SubResource("StandardMaterial3D_6c6wb")
+
+[node name="Chain3" type="MeshInstance3D" parent="MainMesh/Chains" unique_id=1579401000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65, 10, -2.75)
+mesh = SubResource("QuadMesh_5haii")
+surface_material_override/0 = SubResource("StandardMaterial3D_6c6wb")
+
+[node name="Chain4" type="MeshInstance3D" parent="MainMesh/Chains" unique_id=388125990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 10, -2.75)
+mesh = SubResource("QuadMesh_5haii")
+surface_material_override/0 = SubResource("StandardMaterial3D_6c6wb")
+
+[node name="lights" type="Node3D" parent="MainMesh" unique_id=850255982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Interior" type="Node3D" parent="MainMesh/lights" unique_id=125133609]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, -0.37568736, 0)
+
+[node name="Stand" type="MeshInstance3D" parent="MainMesh/lights/Interior" unique_id=2066843682]
+mesh = SubResource("TextMesh_5haii")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Hinge" type="MeshInstance3D" parent="MainMesh/lights/Interior" unique_id=890216603]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 0, 0.21622658, 0)
+mesh = SubResource("CylinderMesh_6c6wb")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Housing" type="MeshInstance3D" parent="MainMesh/lights/Interior/Hinge" unique_id=1687890092]
+transform = Transform3D(-4.371139e-08, -1, 8.742278e-08, 1, -4.371138e-08, 8.7422784e-08, -8.742278e-08, 8.7422784e-08, 1, 0.13095975, 5.724445e-09, 0)
+mesh = SubResource("SphereMesh_tjtai")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Bulb" type="MeshInstance3D" parent="MainMesh/lights/Interior/Hinge" unique_id=2077118558]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.13095975, 5.724445e-09, 0)
+mesh = SubResource("SphereMesh_rnlmm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_i1846")
+
+[node name="Extra" type="OmniLight3D" parent="MainMesh/lights/Interior" unique_id=903019986]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.1339289, 9.913121e-08)
+light_color = Color(0.9999998, 0.8502197, 0.62580764, 1)
+shadow_enabled = true
+shadow_opacity = 0.86
+shadow_blur = 10.0
+
+[node name="Spotlight" parent="MainMesh/lights" unique_id=1921985646 instance=ExtResource("5_6c6wb")]
+transform = Transform3D(1, 0, 0, 0, -0.3641292, 0.93134844, 0, -0.93134844, -0.3641292, 0, -0.19124055, -2.9677105)
+
+[node name="Spotlight2" parent="MainMesh/lights" unique_id=1561719128 instance=ExtResource("5_6c6wb")]
+transform = Transform3D(1, 0, 0, 0, -0.36487684, -0.9310558, 0, 0.9310558, -0.36487684, 0, -0.191, 2.968)
+
+[node name="Switch" type="Node3D" parent="MainMesh" unique_id=681594847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="InputDetector" parent="MainMesh/Switch" unique_id=1830051855 instance=ExtResource("5_tjtai")]
+
+[node name="Range" type="CollisionShape3D" parent="MainMesh/Switch/InputDetector" unique_id=725791208]
+visible = false
+shape = SubResource("BoxShape3D_tjtai")
+
+[node name="Panel" type="MeshInstance3D" parent="MainMesh/Switch" unique_id=1701090382]
+mesh = SubResource("BoxMesh_tjtai")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="HollowSpaces" type="MeshInstance3D" parent="MainMesh/Switch/Panel" unique_id=380396452]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -0.13536537, 0, 0)
+mesh = SubResource("QuadMesh_rnlmm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6w65f")
+
+[node name="SwitchHinge" type="Node3D" parent="MainMesh/Switch" unique_id=562750991]
+transform = Transform3D(0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Bar1" type="MeshInstance3D" parent="MainMesh/Switch/SwitchHinge" unique_id=470328748]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.21461666, 0, -0.11994981)
+mesh = SubResource("CylinderMesh_hwb1n")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Bar2" type="MeshInstance3D" parent="MainMesh/Switch/SwitchHinge" unique_id=1942927214]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.2144345, 0, 0.12)
+mesh = SubResource("CylinderMesh_hwb1n")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="Bar3" type="MeshInstance3D" parent="MainMesh/Switch/SwitchHinge" unique_id=1096997921]
+transform = Transform3D(2.3883568e-15, 3.278354e-08, 1.25, 1.25, -3.278354e-08, 0, 5.4639237e-08, 0.75, -5.4639237e-08, -0.45985866, 0, 0)
+mesh = SubResource("CylinderMesh_hwb1n")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_d747f")
+
+[node name="Indicators" type="Node3D" parent="MainMesh/Switch" unique_id=690401602]
+
+[node name="Indicator1" type="MeshInstance3D" parent="MainMesh/Switch/Indicators" unique_id=392123739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10902786, 0.26954886, 0.288391)
+mesh = SubResource("BoxMesh_rnlmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_iy803")
+
+[node name="Indicator2" type="MeshInstance3D" parent="MainMesh/Switch/Indicators" unique_id=657984923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109, -0.27, 0.288)
+mesh = SubResource("BoxMesh_rnlmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_lrvyo")
+
+[node name="WaterMesh" type="MeshInstance3D" parent="." unique_id=871444983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+mesh = SubResource("PlaneMesh_ijnwq")
+surface_material_override/0 = SubResource("ShaderMaterial_i1846")
+
+[node name="WaterCast" type="Decal" parent="WaterMesh" unique_id=1921960116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+size = Vector3(3.5, 4, 6)
+texture_albedo = SubResource("GradientTexture2D_3x2js")
+
+[node name="Anims" type="AnimationPlayer" parent="." unique_id=769658072]
+libraries/ = SubResource("AnimationLibrary_6c6wb")
+speed_scale = 0.5
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=697023063]
+
+[node name="MainBody" type="CollisionShape3D" parent="Collision" unique_id=1831981586]
+visible = false
+shape = SubResource("ConcavePolygonShape3D_tjtai")
+debug_color = Color(1, 1, 1, 0.41960785)
+debug_fill = false
+
+[node name="legs" type="Node3D" parent="." unique_id=1094260509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8605804, 0)
+
+[node name="leg1" type="MeshInstance3D" parent="legs" unique_id=1894581622]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 1.5843179, 0, -2.668621)
+mesh = SubResource("TextMesh_dybxu")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="leg2" type="MeshInstance3D" parent="legs" unique_id=886741306]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 1.584, 0, 2.669)
+mesh = SubResource("TextMesh_dybxu")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="leg3" type="MeshInstance3D" parent="legs" unique_id=270204811]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -1.584, 0, -2.668621)
+mesh = SubResource("TextMesh_dybxu")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[node name="leg4" type="MeshInstance3D" parent="legs" unique_id=592266450]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -1.584, 0, 2.669)
+mesh = SubResource("TextMesh_dybxu")
+surface_material_override/0 = ExtResource("1_ijnwq")
+
+[connection signal="input_detected" from="MainMesh/Switch/InputDetector" to="." method="_on_input_detector_input_detected"]
+[connection signal="animation_finished" from="Anims" to="." method="_on_anims_animation_finished"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6tnqrvf8knep"]
 
 [ext_resource type="Script" uid="uid://d1jxl7sbb20gm" path="res://Scripts/Systems/resource_spawner.gd" id="1_1getn"]
+[ext_resource type="PackedScene" uid="uid://c61mgkiexjd7l" path="res://Scenes/Game World/VFX/dust_particles.tscn" id="2_mpsx6"]
 
 [sub_resource type="Animation" id="Animation_1getn"]
 length = 0.001
@@ -38,16 +39,124 @@ _data = {
 &"grow": SubResource("Animation_mpsx6")
 }
 
+[sub_resource type="Curve" id="Curve_2eijc"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mwbsr"]
+curve = SubResource("Curve_2eijc")
+
+[sub_resource type="Gradient" id="Gradient_d3kat"]
+colors = PackedColorArray(0.35880962, 0.25993717, 0.16496295, 1, 0.6117138, 0.46120018, 0.31792557, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kscny"]
+gradient = SubResource("Gradient_d3kat")
+
+[sub_resource type="Curve" id="Curve_6ud85"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3rdog"]
+curve = SubResource("Curve_6ud85")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tehs8"]
+particle_flag_rotate_y = true
+angle_min = -179.99998
+angle_max = 180.00002
+angle_curve = SubResource("CurveTexture_mwbsr")
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, -2, 0)
+scale_min = 0.5
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_3rdog")
+color_initial_ramp = SubResource("GradientTexture1D_kscny")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="Curve" id="Curve_mpsx6"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2eijc"]
+curve = SubResource("Curve_mpsx6")
+
+[sub_resource type="Gradient" id="Gradient_mwbsr"]
+colors = PackedColorArray(0.35880962, 0.25993717, 0.16496295, 1, 0.6117138, 0.46120018, 0.31792557, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d3kat"]
+gradient = SubResource("Gradient_mwbsr")
+
+[sub_resource type="Curve" id="Curve_kscny"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ud85"]
+curve = SubResource("Curve_kscny")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3rdog"]
+particle_flag_rotate_y = true
+angle_min = -179.99998
+angle_max = 180.00002
+angle_curve = SubResource("CurveTexture_2eijc")
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -8, 0)
+scale_min = 0.049999997
+scale_max = 0.13
+scale_curve = SubResource("CurveTexture_6ud85")
+color_initial_ramp = SubResource("GradientTexture1D_d3kat")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpsx6"]
+albedo_color = Color(0.057247393, 0.04905817, 0.040805466, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_2eijc"]
+material = SubResource("StandardMaterial3D_mpsx6")
+size = Vector3(1, 0.75, 1)
+
 [node name="ResourceSpawner" type="Node3D" unique_id=1675671955]
 script = ExtResource("1_1getn")
 
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=662807280]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
 
+[node name="DirectionIndicator" type="RayCast3D" parent="SpawnPoint" unique_id=1241656320]
+transform = Transform3D(999.99994, 0, 0, 0, 999.99994, 0, 0, 0, 999.99994, 0, 0, 0)
+target_position = Vector3(0, 0.25, 0)
+debug_shape_custom_color = Color(0.63529414, 0.63529414, 0.63529414, 0.45490196)
+debug_shape_thickness = 5
+
 [node name="RespawnTimer" type="Timer" parent="." unique_id=1119884415]
 one_shot = true
 
 [node name="RespawnAnimation" type="AnimationPlayer" parent="." unique_id=540000188]
 libraries/ = SubResource("AnimationLibrary_2eijc")
+
+[node name="DustParticles" parent="." unique_id=216348937 instance=ExtResource("2_mpsx6")]
+emitting = false
+amount = 8
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tehs8")
+
+[node name="RockParticles" parent="." unique_id=654258131 instance=ExtResource("2_mpsx6")]
+cast_shadow = 1
+emitting = false
+amount = 8
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_3rdog")
+draw_pass_1 = SubResource("PrismMesh_2eijc")
 
 [connection signal="timeout" from="RespawnTimer" to="." method="respawn"]

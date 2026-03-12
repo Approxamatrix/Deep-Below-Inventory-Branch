@@ -10,17 +10,23 @@ extends Node3D
 var instance
 
 func _ready():
+	await get_tree().create_timer(.1).timeout
+	if resource_scene:
+		instance = resource_scene.instantiate()
+		instance = resource_scene.instantiate()
+		spawn_point.add_child(instance)
+		spawn_point.get_child(1).visibility_changed.connect(item_removed)
 	respawn_timer.wait_time = respawn_time
 	respawn()
 
 func item_removed():
-	instance = null
-	respawn_timer.start()
-	respawn_animation.play("RESET")
+	if !instance.visible:
+		$DustParticles.emitting = true
+		$RockParticles.emitting = true
+		respawn_timer.start()
+		respawn_animation.play("RESET")
 
 func respawn():
-	if resource_scene and !instance:
-		instance = resource_scene.instantiate()
-		spawn_point.add_child(instance)
-		spawn_point.get_child(0).tree_exited.connect(item_removed)
+	if resource_scene:
+		instance.visible = true
 		respawn_animation.play("grow")

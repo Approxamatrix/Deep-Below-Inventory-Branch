@@ -1,14 +1,18 @@
 extends CharacterBody3D
 
+@onready var dust_particles = $DustParticles
+
 @export var camera_sensitivity = 700##Counter-intuitively, increasing the value makes the camera more sensitive. No I do not understand why.
 @export var is_underwater = false##When true, changes movement settings to be more sluggish to better approximate an underwater environment/feel
 @export var default_speed = 5.0##Walk speed when in the submarine
 @export var jump_strength = 4.5
 @export_group("Underwater Settings")
 @export var underwater_speed = 2.5##Walk speed when outside the submarine
+
 var speed : float
 
 func _ready():
+	dust_particles.emitting = false
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
@@ -26,9 +30,11 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		dust_particles.emitting = true
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:
+		dust_particles.emitting = false
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 

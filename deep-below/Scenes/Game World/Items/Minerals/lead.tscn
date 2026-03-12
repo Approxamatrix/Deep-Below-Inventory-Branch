@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://cqm4c0gmtbdrb" path="res://Assets/3D/Materials/item_outline.tres" id="6_ws00w"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n2w60"]
-radius = 1.0
+radius = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c74g0"]
 resource_name = "material_0"
@@ -78,11 +78,11 @@ script = ExtResource("1_2jgdi")
 item_id = 1
 
 [node name="InputDetector" parent="." unique_id=1830051855 instance=ExtResource("2_okx8s")]
-visible = false
 indicator_texture = ExtResource("3_2jgdi")
 interaction_sound = ExtResource("4_q37v2")
 
 [node name="PickupRange" type="CollisionShape3D" parent="InputDetector" unique_id=499027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2351982, 0)
 shape = SubResource("SphereShape3D_n2w60")
 debug_color = Color(1, 1, 1, 0.078431375)
 debug_fill = false
@@ -127,6 +127,8 @@ surface_material_override/0 = ExtResource("6_ws00w")
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 multimesh = SubResource("MultiMesh_okx8s")
 
-[connection signal="body_entered" from="InputDetector" to="." method="_on_input_detector_body_entered"]
-[connection signal="body_exited" from="InputDetector" to="." method="_on_input_detector_body_exited"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="area_entered" from="InputDetector" to="." method="_on_input_detector_body_entered"]
+[connection signal="area_exited" from="InputDetector" to="." method="_on_input_detector_body_exited"]
 [connection signal="input_detected" from="InputDetector" to="." method="_on_input_detector_input_detected"]
+[connection signal="visibility_changed" from="InputDetector/PickupRange" to="." method="_on_visibility_changed"]
