@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvarymjwoypr1"]
 
 [ext_resource type="Material" uid="uid://boe1jwun3ibtb" path="res://Assets/3D/Materials/slightly_rusty_metal.tres" id="1_jlcet"]
+[ext_resource type="Script" uid="uid://cokmybdsiq8nr" path="res://Scripts/Structures/DecoItems/spotlight.gd" id="1_l117b"]
 
 [sub_resource type="TextMesh" id="TextMesh_5haii"]
 text = "U"
@@ -46,13 +47,14 @@ emission = Color(1, 0.8009633, 0.5615497, 1)
 emission_energy_multiplier = 3.0
 
 [node name="Spotlight" type="Node3D" unique_id=125133609]
+script = ExtResource("1_l117b")
 
 [node name="Stand" type="MeshInstance3D" parent="." unique_id=2066843682]
 mesh = SubResource("TextMesh_5haii")
 surface_material_override/0 = ExtResource("1_jlcet")
 
 [node name="Hinge" type="MeshInstance3D" parent="." unique_id=890216603]
-transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 0, 0.21622658, 0)
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0.21622658, 0)
 mesh = SubResource("CylinderMesh_6c6wb")
 surface_material_override/0 = ExtResource("1_jlcet")
 
@@ -68,8 +70,8 @@ mesh = SubResource("SphereMesh_rnlmm")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_i1846")
 
-[node name="Source" type="SpotLight3D" parent="." unique_id=1995234926]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+[node name="Source" type="SpotLight3D" parent="Hinge" unique_id=1995234926]
+transform = Transform3D(4.371139e-08, -4.3711392e-08, -1, 1, -8.742278e-08, 4.3711392e-08, -8.742278e-08, -1, 4.371139e-08, -0.21622658, 9.451564e-09, 0)
 light_color = Color(0.9999998, 0.8502197, 0.62580764, 1)
 light_energy = 4.0
 spot_range = 20.0

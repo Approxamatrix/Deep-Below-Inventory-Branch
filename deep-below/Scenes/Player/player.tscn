@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cedigcnhfr3wq" path="res://Scripts/Player/PlayerSystems/player.gd" id="1_uvnfx"]
 [ext_resource type="Texture2D" uid="uid://72g4glmvbft0" path="res://Assets/2D/Icons/interaction_icon.svg" id="2_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://c61mgkiexjd7l" path="res://Scenes/Game World/VFX/dust_particles.tscn" id="3_xpcdj"]
+[ext_resource type="Texture2D" uid="uid://bv21uj773ayd3" path="res://Assets/2D/VFX/detailed puffycloud.png" id="4_mtuoh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -11,6 +12,22 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uvnfx"]
 height = 4.0
 radius = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htcer"]
+transparency = 4
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6283151, 0.62831503, 0.6283149, 1)
+albedo_texture = ExtResource("4_mtuoh")
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_dd0ac"]
+material = SubResource("StandardMaterial3D_htcer")
 
 [node name="Player" type="CharacterBody3D" unique_id=287700029]
 collision_layer = 3
@@ -62,3 +79,4 @@ texture = ExtResource("2_a3d8c")
 
 [node name="DustParticles" parent="." unique_id=216348937 instance=ExtResource("3_xpcdj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+draw_pass_1 = SubResource("QuadMesh_dd0ac")

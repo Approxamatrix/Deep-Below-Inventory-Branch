@@ -19,6 +19,7 @@ background_mode = 1
 ambient_light_energy = 0.0
 reflected_light_source = 1
 tonemap_mode = 2
+glow_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
@@ -177,3 +178,6 @@ respawn_variance = 4.0
 
 [node name="DivingBell" parent="." unique_id=2095712509 instance=ExtResource("7_ao481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Lithium" parent="DivingBell" unique_id=2023164429 instance=ExtResource("4_1xi28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4451072, 1.5866733)

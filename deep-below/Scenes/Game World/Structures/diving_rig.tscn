@@ -460,6 +460,7 @@ surface_material_override/0 = ExtResource("1_ijnwq")
 [node name="Collision" type="StaticBody3D" parent="MainMesh/Doors/Door1/Hinge/Mesh" unique_id=746273829]
 
 [node name="Hitbox" type="CollisionShape3D" parent="MainMesh/Doors/Door1/Hinge/Mesh/Collision" unique_id=1335918668]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_tjtai")
 
 [node name="Door2" type="Node3D" parent="MainMesh/Doors" unique_id=732650133]
@@ -540,10 +541,12 @@ shadow_opacity = 0.86
 shadow_blur = 10.0
 
 [node name="Spotlight" parent="MainMesh/lights" unique_id=1921985646 instance=ExtResource("5_6c6wb")]
-transform = Transform3D(1, 0, 0, 0, -0.3641292, 0.93134844, 0, -0.93134844, -0.3641292, 0, -0.19124055, -2.9677105)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, -0.23019266, -3.1826887)
+turn_angle = 84.87700000000001
 
-[node name="Spotlight2" parent="MainMesh/lights" unique_id=1561719128 instance=ExtResource("5_6c6wb")]
-transform = Transform3D(1, 0, 0, 0, -0.36487684, -0.9310558, 0, 0.9310558, -0.36487684, 0, -0.191, 2.968)
+[node name="Spotlight2" parent="MainMesh/lights" unique_id=23390776 instance=ExtResource("5_6c6wb")]
+transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 0, 0.49999997, 0.86602545, 8.742278e-08, 0.86602545, -0.49999997, 0, -0.23, 3.183)
+turn_angle = 84.87700000000001
 
 [node name="Switch" type="Node3D" parent="MainMesh" unique_id=681594847]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
