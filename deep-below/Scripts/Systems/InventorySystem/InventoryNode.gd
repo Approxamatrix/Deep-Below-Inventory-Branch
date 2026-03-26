@@ -11,20 +11,24 @@ func _ready() -> void:
 		pass
 	
 func add_item(newitem : SlotData):
-	if InventoryData != null:
+	if InventoryData != null and newitem != null:
 		for slots in InventoryData.SlotArray:
 			if slots.Itemdata == newitem.Itemdata:
-				slots.ItemCount += newitem.ItemCount
+				if slots.Itemcount != null:
+					slots.Itemcount += newitem.Itemcount
 				InventoryAutoload.UpdateInvGUI.emit()
 			elif slots.Itemdata == null or slots == null:
-				slots = newitem
+				slots.Itemdata = newitem.Itemdata
+				slots.Itemcount = newitem.Itemcount
 				InventoryAutoload.UpdateInvGUI.emit()
+				break
 
 func remove_item(item : ItemData):
 	if InventoryData != null:
 		for slotindex in InventoryData.SlotArray.size(): 
 			if item == InventoryData.SlotArray[slotindex]:
-				InventoryData.SlotArray.remove_at(slotindex)
+				InventoryData.SlotArray[slotindex].Itemcount = 0
+				InventoryData.SlotArray[slotindex].Itemdata = null
 				InventoryAutoload.UpdateInvGUI.emit()
 			else: pass
 
@@ -44,7 +48,6 @@ func swap_slots(slot1 : InventoryButton, slot2 : InventoryButton):
 
 func get_inventory_data():
 	return InventoryData
-
 func get_specific_inventory_slotdata(buttonref : InventoryButton):
 	if buttonref.get_parent() is GridContainer:
 		return InventoryData.SlotArray[buttonref.get_index()]

@@ -21,6 +21,7 @@ func _ready():
 	else:
 		pass
 
+
 func prepare_button_signals():
 	for nodes in InvUI.get_children():
 		if nodes is Button:

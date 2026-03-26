@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="InventoryRes" format=3 uid="uid://bt523bm3ixxoo"]
 
 [ext_resource type="Script" uid="uid://bj4xvayxhbgy8" path="res://Scripts/ResourceBases/InventorySystem/SlotData.gd" id="1_q7ec8"]
-[ext_resource type="Texture2D" uid="uid://dn24s7y6jx0rk" path="res://Assets/Items/InventoryIcons/repair_tool_icon.png" id="2_cy2y3"]
 [ext_resource type="Script" uid="uid://dnfj0pb4nmx3d" path="res://Scripts/ResourceBases/InventorySystem/ItemData.gd" id="2_jxeka"]
 [ext_resource type="Texture2D" uid="uid://n4dntn3kv46d" path="res://Assets/2D/MineralSprites/lead_icon.png" id="2_uxq47"]
 [ext_resource type="Script" uid="uid://bihf3jq2pkuq4" path="res://Scripts/ResourceBases/InventorySystem/InventoryRes.gd" id="3_cy2y3"]
 [ext_resource type="Texture2D" uid="uid://bhkeklrwmot88" path="res://Assets/2D/MineralSprites/lithium_icon.png" id="4_cy2y3"]
 [ext_resource type="Texture2D" uid="uid://bn04f34yuw7pw" path="res://Assets/2D/MineralSprites/sulphur_icon.png" id="5_fwb41"]
+[ext_resource type="Resource" uid="uid://cyxr5qnarvj26" path="res://Resources/Items/Tools/repair_tool.tres" id="5_uxq47"]
 
 [sub_resource type="Resource" id="Resource_cy2y3"]
 script = ExtResource("2_jxeka")
@@ -46,18 +46,6 @@ metadata/_custom_type_script = "uid://bj4xvayxhbgy8"
 
 [sub_resource type="Resource" id="Resource_f2k4e"]
 script = ExtResource("1_q7ec8")
-metadata/_custom_type_script = "uid://bj4xvayxhbgy8"
-
-[sub_resource type="Resource" id="Resource_jxeka"]
-script = ExtResource("2_jxeka")
-Itemname = "Repair Tool"
-Itemtexture = ExtResource("2_cy2y3")
-metadata/_custom_type_script = "uid://dnfj0pb4nmx3d"
-
-[sub_resource type="Resource" id="Resource_onbb1"]
-script = ExtResource("1_q7ec8")
-Itemdata = SubResource("Resource_jxeka")
-Itemcount = 5
 metadata/_custom_type_script = "uid://bj4xvayxhbgy8"
 
 [sub_resource type="Resource" id="Resource_5e7nj"]
@@ -138,6 +126,6 @@ metadata/_custom_type_script = "uid://bj4xvayxhbgy8"
 
 [resource]
 script = ExtResource("3_cy2y3")
-SlotArray = Array[ExtResource("1_q7ec8")]([SubResource("Resource_onbb1"), SubResource("Resource_atm87"), SubResource("Resource_bpxen"), SubResource("Resource_mbbcp"), SubResource("Resource_q6s76"), SubResource("Resource_vymqi"), SubResource("Resource_56kji"), SubResource("Resource_dndbm"), SubResource("Resource_4y7mu"), SubResource("Resource_ncqmc"), SubResource("Resource_08msn"), SubResource("Resource_2uiib"), SubResource("Resource_22vov"), SubResource("Resource_nhb32"), SubResource("Resource_7vgsl"), SubResource("Resource_e3cwi"), SubResource("Resource_nrijb"), SubResource("Resource_obw6n")])
+SlotArray = Array[ExtResource("1_q7ec8")]([ExtResource("5_uxq47"), SubResource("Resource_atm87"), SubResource("Resource_bpxen"), SubResource("Resource_mbbcp"), SubResource("Resource_q6s76"), SubResource("Resource_vymqi"), SubResource("Resource_56kji"), SubResource("Resource_dndbm"), SubResource("Resource_4y7mu"), SubResource("Resource_ncqmc"), SubResource("Resource_08msn"), SubResource("Resource_2uiib"), SubResource("Resource_22vov"), SubResource("Resource_nhb32"), SubResource("Resource_7vgsl"), SubResource("Resource_e3cwi"), SubResource("Resource_nrijb"), SubResource("Resource_obw6n")])
 HotBar = Array[ExtResource("1_q7ec8")]([SubResource("Resource_fwb41"), SubResource("Resource_uxq47"), SubResource("Resource_prttb"), SubResource("Resource_gnwvt"), SubResource("Resource_kd0mv"), SubResource("Resource_f2k4e")])
 metadata/_custom_type_script = "uid://bihf3jq2pkuq4"

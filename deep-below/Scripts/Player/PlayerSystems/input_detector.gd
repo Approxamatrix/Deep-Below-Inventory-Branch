@@ -47,6 +47,8 @@ func _ready():
 	
 	if indicator_texture:
 		indicator_sprite.texture = indicator_texture
+		
+		pass
 
 func _unhandled_input(_event):
 	if in_range and Input.is_action_just_pressed("interact") and !disabled:
