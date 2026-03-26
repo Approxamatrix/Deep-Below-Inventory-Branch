@@ -11,6 +11,11 @@ extends CharacterBody3D
 var can_move = true
 var speed : float
 
+@export_group("GUI")
+@export var InventoryGuiNode : Control
+
+
+
 func _ready():
 	dust_particles.emitting = false
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
@@ -45,6 +50,13 @@ func _input(event):
 		rotation.y -= event.relative.x / camera_sensitivity
 		$CamPositioner.rotation.x -= event.relative.y / camera_sensitivity
 		$CamPositioner.rotation.x = clamp($CamPositioner.rotation.x, deg_to_rad(-65), deg_to_rad(90))
+	if Input.is_action_just_pressed("Inventory") and InventoryGuiNode != null:
+		
+		if InventoryGuiNode.visible == true:
+			InventoryGuiNode.visible = false
+		else:
+			InventoryGuiNode.visible = true
+		
 
 func _on_movement_disabler_area_entered(_area):
 	can_move = false
