@@ -7,6 +7,10 @@ extends Node3D
 
 @export var resource_scene : PackedScene##The scene for the item that will be spawned
 @export var respawn_time = 20.0##Time until the item will respawn after being removed
+
+@export var ItemSlotdata : SlotData
+
+
 var instance
 
 func _ready():
@@ -23,6 +27,16 @@ func item_removed():
 	if !instance.visible:
 		$DustParticles.emitting = true
 		$RockParticles.emitting = true
+		
+		if ItemSlotdata != null:
+			
+			InventoryAutoload.AddItem.emit(ItemSlotdata)
+			
+			pass
+		else:
+			
+			pass
+		
 		respawn_timer.start()
 		respawn_animation.play("RESET")
 

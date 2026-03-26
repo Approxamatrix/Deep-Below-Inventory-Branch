@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://72g4glmvbft0" path="res://Assets/2D/Icons/interaction_icon.svg" id="2_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://c61mgkiexjd7l" path="res://Scenes/Game World/VFX/dust_particles.tscn" id="3_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://bv21uj773ayd3" path="res://Assets/2D/VFX/detailed puffycloud.png" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://36k4xijrikdk" path="res://Scripts/Systems/InventorySystem/InventoryNode.gd" id="5_htcer"]
+[ext_resource type="Resource" uid="uid://bt523bm3ixxoo" path="res://Resources/Inventory/Inventory.tres" id="6_0u5uq"]
+[ext_resource type="PackedScene" uid="uid://de3043prr1ege" path="res://Scenes/Systems/InventorySystem/Hotbar/HotbarGUI.tscn" id="7_jlvik"]
+[ext_resource type="PackedScene" uid="uid://cm0uyiffvsb2r" path="res://Scenes/Systems/InventorySystem/InventoryMenu.tscn" id="8_jlvik"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -31,9 +35,10 @@ material = SubResource("StandardMaterial3D_htcer")
 height = 4.0
 radius = 0.001
 
-[node name="Player" type="CharacterBody3D" unique_id=287700029]
+[node name="Player" type="CharacterBody3D" unique_id=287700029 node_paths=PackedStringArray("InventoryGuiNode")]
 collision_layer = 3
 script = ExtResource("1_uvnfx")
+InventoryGuiNode = NodePath("InventoryMenu")
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1642345947]
 shape = SubResource("CapsuleShape3D_tugb3")
@@ -90,6 +95,23 @@ position = Vector2(960, 540)
 rotation = 0.7853982
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_a3d8c")
+
+[node name="InventoryNode" type="Node" parent="." unique_id=1632795921]
+script = ExtResource("5_htcer")
+InventoryData = ExtResource("6_0u5uq")
+metadata/_custom_type_script = "uid://36k4xijrikdk"
+
+[node name="Hotbar" parent="." unique_id=911003450 node_paths=PackedStringArray("InvNode") instance=ExtResource("7_jlvik")]
+anchor_left = 0.016666668
+anchor_top = 0.8
+anchor_right = 0.515625
+anchor_bottom = 0.9953704
+InvNode = NodePath("../InventoryNode")
+
+[node name="InventoryMenu" parent="." unique_id=14087089 node_paths=PackedStringArray("InvNode") instance=ExtResource("8_jlvik")]
+visible = false
+mouse_filter = 1
+InvNode = NodePath("../InventoryNode")
 
 [connection signal="area_entered" from="Hitbox/MovementDisabler" to="." method="_on_movement_disabler_area_entered"]
 [connection signal="area_exited" from="Hitbox/MovementDisabler" to="." method="_on_movement_disabler_area_exited"]
