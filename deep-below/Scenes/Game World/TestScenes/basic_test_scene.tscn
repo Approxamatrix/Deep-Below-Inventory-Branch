@@ -132,8 +132,7 @@ debug_color = Color(1, 1, 1, 0.41960785)
 debug_fill = false
 
 [node name="Player" parent="." unique_id=287700029 instance=ExtResource("1_pkxsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7321689, 1.6554518, 0)
-is_underwater = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.244183, 2.3845127, 0)
 
 [node name="Testlight" type="OmniLight3D" parent="Player" unique_id=1177837631]
 light_color = Color(1, 0.8901961, 0.52156866, 1)
@@ -176,4 +175,4 @@ respawn_time = 5.0
 respawn_variance = 4.0
 
 [node name="SubmarineInterior" parent="." unique_id=396652979 instance=ExtResource("7_ao481")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9192033, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.179842, 2.0622668, 0)

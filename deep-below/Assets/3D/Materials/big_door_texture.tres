@@ -1,0 +1,25 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://3qksow8i07s1"]
+
+[sub_resource type="Gradient" id="Gradient_6wmol"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 0.5764706, 0, 1, 0.34158427, 0.34158427, 0.3415842, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8wfxy"]
+gradient = SubResource("Gradient_6wmol")
+fill_to = Vector2(0, 0.21111111)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_03so5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rynpc"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_03so5")
+seamless = true
+as_normal_map = true
+
+[resource]
+albedo_texture = SubResource("GradientTexture2D_8wfxy")
+metallic = 0.75
+roughness = 0.5
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_rynpc")
+uv1_scale = Vector3(4, 4, 4)

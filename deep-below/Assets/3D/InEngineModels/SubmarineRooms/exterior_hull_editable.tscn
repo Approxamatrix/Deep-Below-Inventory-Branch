@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cobh22hj72a3a"]
+
+[node name="ExteriorHull" type="CSGCombiner3D" unique_id=4809516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="MainBody" type="CSGCylinder3D" parent="." unique_id=90247536]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+radius = 8.0
+height = 80.0
+sides = 16
+
+[node name="End1" type="CSGSphere3D" parent="MainBody" unique_id=525053872]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -1.1368684e-13, 40, 0)
+radius = 8.0
+radial_segments = 16
+rings = 8
+
+[node name="End2" type="CSGSphere3D" parent="MainBody" unique_id=556097556]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0, -40, 0)
+radius = 8.0
+radial_segments = 16
+rings = 8
+
+[node name="Hollow" type="CSGCylinder3D" parent="." unique_id=286127209]
+transform = Transform3D(-3.934025e-08, -0.9, 0, 0.9, -3.934025e-08, 0, 0, 0, 0.9, 0, 0, 0)
+operation = 2
+radius = 8.0
+height = 80.0
+sides = 16
+
+[node name="End1" type="CSGSphere3D" parent="Hollow" unique_id=1882602580]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.1368684e-13, 40, 0)
+operation = 2
+radius = 8.0
+radial_segments = 16
+rings = 8
+
+[node name="End2" type="CSGSphere3D" parent="Hollow" unique_id=1413797645]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -40, 0)
+operation = 2
+radius = 8.0
+radial_segments = 16
+rings = 8
+
+[node name="Cutout" type="CSGCylinder3D" parent="." unique_id=1817212296]
+transform = Transform3D(0.9238795, 0, 0.38268346, -0.38268346, -4.371139e-08, 0.9238795, 1.6727626e-08, -1, -4.0384055e-08, 0.40296173, 0, 0)
+operation = 2
+radius = 2.0
+height = 20.0
