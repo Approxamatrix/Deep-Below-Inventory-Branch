@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bexegckwnddnq"]
+
+[ext_resource type="PackedScene" uid="uid://dr1kv7tqp0c08" path="res://Scenes/Game World/Structures/submarine/rooms/cockpit.tscn" id="1_gk6xg"]
+[ext_resource type="PackedScene" uid="uid://bqalj8ymjbmc" path="res://Scenes/Game World/Structures/submarine/rooms/corridor.tscn" id="2_umh8c"]
+[ext_resource type="PackedScene" uid="uid://cmkgp0ul1klne" path="res://Scenes/Game World/Structures/submarine/door.tscn" id="3_umh8c"]
+[ext_resource type="PackedScene" uid="uid://6qrrayxlt7kk" path="res://Assets/3D/InEngineModels/SubmarineRooms/airlock_mesh.gltf" id="4_o58h0"]
+[ext_resource type="PackedScene" uid="uid://bvarymjwoypr1" path="res://Scenes/Game World/Props/StructureDecorations/spotlight.tscn" id="6_dysoe"]
+
+[sub_resource type="Gradient" id="Gradient_ggj3b"]
+colors = PackedColorArray(0.04455792, 0.044557832, 0.044557832, 1, 0.24840033, 0.24840012, 0.24840012, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dhcxk"]
+noise_type = 3
+fractal_octaves = 1
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ijnwq"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_dhcxk")
+color_ramp = SubResource("Gradient_ggj3b")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_dhcxk"]
+offsets = PackedFloat32Array(0.086419754, 0.28395063)
+colors = PackedColorArray(0.43931207, 0.051781453, 2.4065375e-08, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ijnwq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3x2js"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ijnwq")
+color_ramp = SubResource("Gradient_dhcxk")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5haii"]
+frequency = 0.0323
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6c6wb"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_5haii")
+seamless = true
+as_normal_map = true
+bump_strength = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8gr6"]
+transparency = 4
+albedo_texture = SubResource("NoiseTexture2D_3x2js")
+metallic = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_6c6wb")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ggj3b"]
+frequency = 0.0062
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dhcxk"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ggj3b")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o58h0"]
+next_pass = SubResource("StandardMaterial3D_a8gr6")
+albedo_texture = SubResource("NoiseTexture2D_ijnwq")
+metallic = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_dhcxk")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[node name="SubmarineInterior" type="Node3D" unique_id=396652979]
+
+[node name="Cockpit" parent="." unique_id=2065375818 instance=ExtResource("1_gk6xg")]
+
+[node name="Door" parent="Cockpit" unique_id=146931857 instance=ExtResource("3_umh8c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.5, 0)
+
+[node name="Corridor" parent="." unique_id=737430412 instance=ExtResource("2_umh8c")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.25, -0.5, 0)
+
+[node name="Door" parent="Corridor" unique_id=324145507 instance=ExtResource("3_umh8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.5, -2.667)
+
+[node name="Door2" parent="Corridor" unique_id=154190492 instance=ExtResource("3_umh8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.75, 0.5, -2.667)
+
+[node name="Door3" parent="Corridor" unique_id=1439445744 instance=ExtResource("3_umh8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 0.5, -2.667)
+
+[node name="Door4" parent="Corridor" unique_id=1153413666 instance=ExtResource("3_umh8c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 21.75, 0.5, 2.667)
+
+[node name="Door5" parent="Corridor" unique_id=890759950 instance=ExtResource("3_umh8c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 11.75, 0.5, 2.667)
+
+[node name="Door6" parent="Corridor" unique_id=683618312 instance=ExtResource("3_umh8c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.75, 0.5, 2.667)
+
+[node name="Airlock" type="Node3D" parent="." unique_id=1270410323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 0, 0)
+
+[node name="AirlockMesh" parent="Airlock" unique_id=979725303 instance=ExtResource("4_o58h0")]
+surface_material_override/0 = SubResource("StandardMaterial3D_o58h0")
+
+[node name="Spotlight" parent="Airlock" unique_id=125133609 instance=ExtResource("6_dysoe")]
+transform = Transform3D(0.25881904, 2.262668e-08, 0.9659258, 8.742278e-08, -1, 0, 0.9659258, 8.444392e-08, -0.25881904, 0, 2, 0)
+light_energy = 2.0
+light_width = 70.0
