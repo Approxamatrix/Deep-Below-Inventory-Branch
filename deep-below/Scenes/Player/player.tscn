@@ -35,10 +35,11 @@ material = SubResource("StandardMaterial3D_htcer")
 height = 4.0
 radius = 0.001
 
-[node name="Player" type="CharacterBody3D" unique_id=287700029 node_paths=PackedStringArray("InventoryGuiNode")]
+[node name="Player" type="CharacterBody3D" unique_id=287700029 node_paths=PackedStringArray("InventoryGuiNode", "SeparateHotbar")]
 collision_layer = 3
 script = ExtResource("1_uvnfx")
 InventoryGuiNode = NodePath("InventoryMenu")
+SeparateHotbar = NodePath("Hotbar")
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1642345947]
 shape = SubResource("CapsuleShape3D_tugb3")

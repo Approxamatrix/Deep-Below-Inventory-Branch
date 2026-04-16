@@ -99,6 +99,10 @@ anchor_left = 13.625
 anchor_top = 22.2
 anchor_right = 35.59948
 anchor_bottom = 25.775
+offset_left = -25632.0
+offset_top = -23208.0
+offset_right = -66942.0
+offset_bottom = -26926.0
 theme_override_constants/separation = 140
 
 [node name="Button" parent="Hotbar" unique_id=474754433 instance=ExtResource("1_m6as1")]

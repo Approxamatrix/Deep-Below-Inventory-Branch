@@ -3,6 +3,10 @@ class_name InventoryNode
 
 @export var InventoryData : InventoryRes
 
+
+enum InvTypeEnum {Hotbar,Backpack}
+
+
 func _ready() -> void:
 	InventoryAutoload.AddItem.connect(add_item)
 	InventoryAutoload.RemoveItem.connect(remove_item)
@@ -11,18 +15,41 @@ func _ready() -> void:
 		pass
 	
 func add_item(newitem : SlotData):
+	
 	if InventoryData != null and newitem != null:
-		for slots in InventoryData.SlotArray:
-			if slots.Itemdata == newitem.Itemdata:
-				if slots.Itemcount != null:
-					slots.Itemcount += newitem.Itemcount
-				InventoryAutoload.UpdateInvGUI.emit()
-				break
-			elif slots.Itemdata == null or slots == null:
-				slots.Itemdata = newitem.Itemdata
-				slots.Itemcount = newitem.Itemcount
-				InventoryAutoload.UpdateInvGUI.emit()
-				break
+		
+		
+		
+		##run a check to see if the hotbar is full and if it isn't then:
+		if are_slots_free(InvTypeEnum.Hotbar) == true:
+			for hotbarslots in InventoryData.HotBar:
+				if hotbarslots.Itemdata == newitem.Itemdata:
+					if hotbarslots.Itemcount != null:
+						hotbarslots.Itemcount += newitem.Itemcount
+						InventoryAutoload.UpdateInvGUI.emit()
+					return
+				elif hotbarslots.Itemdata == null or hotbarslots == null:
+					hotbarslots.Itemdata = newitem.Itemdata
+					hotbarslots.Itemcount = newitem.Itemcount
+					InventoryAutoload.UpdateInvGUI.emit()
+					return
+			
+		##if the hotbar is full, then it will check the backpack for free space, and if there is free space...
+		elif are_slots_free(InvTypeEnum.Backpack) == true:
+			for slots in InventoryData.SlotArray:
+				if slots.Itemdata == newitem.Itemdata:
+					if slots.Itemcount != null:
+						slots.Itemcount += newitem.Itemcount
+					InventoryAutoload.UpdateInvGUI.emit()
+					return
+				elif slots.Itemdata == null or slots == null:
+					slots.Itemdata = newitem.Itemdata
+					slots.Itemcount = newitem.Itemcount
+					InventoryAutoload.UpdateInvGUI.emit()
+					return
+		else: ##but if that fails too, then say that there is no free space in the inventory
+			print(" Alert !there is no free space in the inventory !!")
+			pass
 
 func remove_item(item : ItemData):
 	
@@ -90,3 +117,51 @@ func get_slot_data(index : int):
 		return InventoryData.SlotArray[index]
 	else:
 		pass
+	
+	
+
+
+func are_slots_free(InvType : InvTypeEnum):
+	
+	var FreeSlotCounter : int = 0
+	
+	match InvType:
+		
+		
+		InvTypeEnum.Hotbar:
+			FreeSlotCounter = 0
+			for slots in InventoryData.HotBar:
+				
+				if slots.Itemdata == null:
+					FreeSlotCounter += 1
+					
+				else:
+					pass
+				
+			if FreeSlotCounter > 0:
+				
+				return true
+			elif FreeSlotCounter < 0:
+				return false
+				
+			
+			
+		InvTypeEnum.Backpack:
+			FreeSlotCounter = 0
+			for slots in InventoryData.SlotArray:
+				if slots.Itemdata == null:
+					FreeSlotCounter += 1
+					
+				else:
+					pass
+				
+			if FreeSlotCounter > 0:
+				
+				return true
+			elif FreeSlotCounter < 0:
+				return false
+				
+		
+	
+	
+	pass
