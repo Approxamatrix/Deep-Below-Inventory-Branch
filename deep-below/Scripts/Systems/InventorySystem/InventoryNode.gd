@@ -82,8 +82,18 @@ func swap_slots(slot1 : InventoryButton, slot2 : InventoryButton):
 	#var oldslot1 = InventoryData.SlotArray[slot1]
 	#var oldslot2 =  InventoryData.SlotArray[slot2]
 	#InventoryData.SlotArray[slot1] = oldslot2
-	set_specific_inventory_slotdata(slot2,oldslot1data)
-	set_specific_inventory_slotdata(slot1,oldslot2data)
+	
+	if slot1data.Itemdata == slot2data.Itemdata:
+			var EmptySlotdata = SlotData.new()
+			slot2data.Itemcount += slot1data.Itemcount
+			set_specific_inventory_slotdata(slot1,EmptySlotdata)
+			
+		
+		
+	else:
+		set_specific_inventory_slotdata(slot2,oldslot1data)
+		set_specific_inventory_slotdata(slot1,oldslot2data)
+		pass
 	InventoryAutoload.UpdateInvGUI.emit()
 
 func get_inventory_data():
