@@ -25,8 +25,20 @@ func add_item(newitem : SlotData):
 				break
 
 func remove_item(item : ItemData):
-	if InventoryData != null:
-		for slotindex in InventoryData.SlotArray.size(): 
+	
+	if InventoryData != null: 
+		
+		for hotbarindex in InventoryData.HotBar.size(): ##for the hotbar !
+			
+			if item == InventoryData.HotBar[hotbarindex]:
+				InventoryData.HotBar[hotbarindex].Itemcount = 0
+				InventoryData.HotBar[hotbarindex].Itemdata = null
+				InventoryAutoload.UpdateInvGUI.emit()
+				
+			else: 
+				pass
+			
+		for slotindex in InventoryData.SlotArray.size(): ##for the backpack !
 			if item == InventoryData.SlotArray[slotindex]:
 				InventoryData.SlotArray[slotindex].Itemcount = 0
 				InventoryData.SlotArray[slotindex].Itemdata = null
