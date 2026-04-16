@@ -13,7 +13,7 @@ var speed : float
 
 @export_group("GUI")
 @export var InventoryGuiNode : Control
-
+@export var SeparateHotbar : Control
 
 
 func _ready():
@@ -55,8 +55,14 @@ func _input(event):
 		
 		if InventoryGuiNode.visible == true:
 			InventoryGuiNode.visible = false
+			SeparateHotbar.visible = true
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+			
 		else:
 			InventoryGuiNode.visible = true
+			SeparateHotbar.visible = false
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 
 func _on_movement_disabler_area_entered(_area):

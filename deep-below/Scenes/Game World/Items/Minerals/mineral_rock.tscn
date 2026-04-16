@@ -27,11 +27,14 @@ ItemSlotdata = ExtResource("4_yu0vw")
 [node name="Spawn2" parent="Spawners" unique_id=152047169 instance=ExtResource("2_eor53")]
 transform = Transform3D(-0.80387896, -0.39866176, -0.44141507, -0.55112046, 0.77836365, 0.30069277, 0.22370678, 0.4849935, -0.84542084, -0.16872656, 0.22053611, 0.2743507)
 respawn_time = 10.0
+ItemSlotdata = ExtResource("4_yu0vw")
 
 [node name="Spawn3" parent="Spawners" unique_id=1302191163 instance=ExtResource("2_eor53")]
 transform = Transform3D(0.41818076, 0.54550576, 0.7263249, 0.45893654, 0.56315696, -0.68719083, -0.7839017, 0.62070715, -0.014851183, 0.3870104, 0.22053611, 0.024522424)
 respawn_time = 10.0
+ItemSlotdata = ExtResource("4_yu0vw")
 
 [node name="Spawn4" parent="Spawners" unique_id=1679306010 instance=ExtResource("2_eor53")]
 transform = Transform3D(-0.8626901, 0.09749249, -0.496247, 0.5050032, 0.21875677, -0.8349353, 0.02715756, -0.97089684, -0.23795328, 0.112044275, 0.22053611, -0.39347732)
 respawn_time = 10.0
+ItemSlotdata = ExtResource("4_yu0vw")

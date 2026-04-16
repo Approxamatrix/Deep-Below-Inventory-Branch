@@ -3,6 +3,10 @@ class_name InventoryNode
 
 @export var InventoryData : InventoryRes
 
+
+enum InvTypeEnum {Hotbar,Backpack}
+
+
 func _ready() -> void:
 	InventoryAutoload.AddItem.connect(add_item)
 	InventoryAutoload.RemoveItem.connect(remove_item)
@@ -11,22 +15,57 @@ func _ready() -> void:
 		pass
 	
 func add_item(newitem : SlotData):
+	
 	if InventoryData != null and newitem != null:
-		for slots in InventoryData.SlotArray:
-			if slots.Itemdata == newitem.Itemdata:
-				if slots.Itemcount != null:
-					slots.Itemcount += newitem.Itemcount
-				InventoryAutoload.UpdateInvGUI.emit()
-				break
-			elif slots.Itemdata == null or slots == null:
-				slots.Itemdata = newitem.Itemdata
-				slots.Itemcount = newitem.Itemcount
-				InventoryAutoload.UpdateInvGUI.emit()
-				break
+		
+		
+		
+		##run a check to see if the hotbar is full and if it isn't then:
+		if are_slots_free(InvTypeEnum.Hotbar) == true:
+			for hotbarslots in InventoryData.HotBar:
+				if hotbarslots.Itemdata == newitem.Itemdata:
+					if hotbarslots.Itemcount != null:
+						hotbarslots.Itemcount += newitem.Itemcount
+						InventoryAutoload.UpdateInvGUI.emit()
+					return
+				elif hotbarslots.Itemdata == null or hotbarslots == null:
+					hotbarslots.Itemdata = newitem.Itemdata
+					hotbarslots.Itemcount = newitem.Itemcount
+					InventoryAutoload.UpdateInvGUI.emit()
+					return
+			
+		##if the hotbar is full, then it will check the backpack for free space, and if there is free space...
+		elif are_slots_free(InvTypeEnum.Backpack) == true:
+			for slots in InventoryData.SlotArray:
+				if slots.Itemdata == newitem.Itemdata:
+					if slots.Itemcount != null:
+						slots.Itemcount += newitem.Itemcount
+					InventoryAutoload.UpdateInvGUI.emit()
+					return
+				elif slots.Itemdata == null or slots == null:
+					slots.Itemdata = newitem.Itemdata
+					slots.Itemcount = newitem.Itemcount
+					InventoryAutoload.UpdateInvGUI.emit()
+					return
+		else: ##but if that fails too, then say that there is no free space in the inventory
+			print(" Alert !there is no free space in the inventory !!")
+			pass
 
 func remove_item(item : ItemData):
-	if InventoryData != null:
-		for slotindex in InventoryData.SlotArray.size(): 
+	
+	if InventoryData != null: 
+		
+		for hotbarindex in InventoryData.HotBar.size(): ##for the hotbar !
+			
+			if item == InventoryData.HotBar[hotbarindex]:
+				InventoryData.HotBar[hotbarindex].Itemcount = 0
+				InventoryData.HotBar[hotbarindex].Itemdata = null
+				InventoryAutoload.UpdateInvGUI.emit()
+				
+			else: 
+				pass
+			
+		for slotindex in InventoryData.SlotArray.size(): ##for the backpack !
 			if item == InventoryData.SlotArray[slotindex]:
 				InventoryData.SlotArray[slotindex].Itemcount = 0
 				InventoryData.SlotArray[slotindex].Itemdata = null
@@ -43,8 +82,18 @@ func swap_slots(slot1 : InventoryButton, slot2 : InventoryButton):
 	#var oldslot1 = InventoryData.SlotArray[slot1]
 	#var oldslot2 =  InventoryData.SlotArray[slot2]
 	#InventoryData.SlotArray[slot1] = oldslot2
-	set_specific_inventory_slotdata(slot2,oldslot1data)
-	set_specific_inventory_slotdata(slot1,oldslot2data)
+	
+	if slot1data.Itemdata == slot2data.Itemdata:
+			var EmptySlotdata = SlotData.new()
+			slot2data.Itemcount += slot1data.Itemcount
+			set_specific_inventory_slotdata(slot1,EmptySlotdata)
+			
+		
+		
+	else:
+		set_specific_inventory_slotdata(slot2,oldslot1data)
+		set_specific_inventory_slotdata(slot1,oldslot2data)
+		pass
 	InventoryAutoload.UpdateInvGUI.emit()
 
 func get_inventory_data():
@@ -78,3 +127,51 @@ func get_slot_data(index : int):
 		return InventoryData.SlotArray[index]
 	else:
 		pass
+	
+	
+
+
+func are_slots_free(InvType : InvTypeEnum):
+	
+	var FreeSlotCounter : int = 0
+	
+	match InvType:
+		
+		
+		InvTypeEnum.Hotbar:
+			FreeSlotCounter = 0
+			for slots in InventoryData.HotBar:
+				
+				if slots.Itemdata == null:
+					FreeSlotCounter += 1
+					
+				else:
+					pass
+				
+			if FreeSlotCounter > 0:
+				
+				return true
+			elif FreeSlotCounter < 0:
+				return false
+				
+			
+			
+		InvTypeEnum.Backpack:
+			FreeSlotCounter = 0
+			for slots in InventoryData.SlotArray:
+				if slots.Itemdata == null:
+					FreeSlotCounter += 1
+					
+				else:
+					pass
+				
+			if FreeSlotCounter > 0:
+				
+				return true
+			elif FreeSlotCounter < 0:
+				return false
+				
+		
+	
+	
+	pass
