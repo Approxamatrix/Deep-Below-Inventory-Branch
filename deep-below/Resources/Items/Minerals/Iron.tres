@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SlotData" format=3 uid="uid://ifvtyclobbuy"]
+
+[ext_resource type="Script" uid="uid://bj4xvayxhbgy8" path="res://Scripts/ResourceBases/InventorySystem/SlotData.gd" id="1_rfu7a"]
+[ext_resource type="Texture2D" uid="uid://cl6ewcv1whs2u" path="res://Assets/2D/MineralSprites/iron_icon.png" id="1_yxlr2"]
+[ext_resource type="Script" uid="uid://dnfj0pb4nmx3d" path="res://Scripts/ResourceBases/InventorySystem/ItemData.gd" id="2_a86sq"]
+
+[sub_resource type="Resource" id="Resource_ojpgp"]
+script = ExtResource("2_a86sq")
+Itemname = "Iron"
+Itemtexture = ExtResource("1_yxlr2")
+metadata/_custom_type_script = "uid://dnfj0pb4nmx3d"
+
+[resource]
+script = ExtResource("1_rfu7a")
+Itemdata = SubResource("Resource_ojpgp")
+Itemcount = 1
+metadata/_custom_type_script = "uid://bj4xvayxhbgy8"

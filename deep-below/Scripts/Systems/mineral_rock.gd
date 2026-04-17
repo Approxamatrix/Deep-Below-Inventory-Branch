@@ -4,6 +4,9 @@ extends Node3D
 @export_range(5,1200,5) var respawn_time = 20.0##How long it will take the ores to respawn
 @export_range(0,600,1) var respawn_variance = 5.0##Used to randomize the amount of time for respawn. For example, a respawn variance of 5 means there is a chance for any number between 0 and 5 to either be added or subtracted to the set respawn time.
 
+@export var ItemSlotdata : SlotData
+
+
 func _ready():
 	if mineral_scene:
 		for child in $Spawners.get_children():
