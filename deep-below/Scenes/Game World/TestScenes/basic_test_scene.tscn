@@ -3,10 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://bmdntl6d4pa0o" path="res://Scenes/Player/player.tscn" id="1_pkxsh"]
 [ext_resource type="PackedScene" uid="uid://dlap5bpigh3k4" path="res://Scenes/Game World/Items/Minerals/mineral_rock.tscn" id="2_g1swy"]
 [ext_resource type="PackedScene" uid="uid://d2xi1g2kjrwfw" path="res://Scenes/Game World/Items/Minerals/lithium.tscn" id="4_1xi28"]
+[ext_resource type="Resource" uid="uid://ifvtyclobbuy" path="res://Resources/Items/Minerals/Iron.tres" id="4_7ab7m"]
 [ext_resource type="PackedScene" uid="uid://r0idd4ksgjjv" path="res://Scenes/Game World/Items/Minerals/iron.tscn" id="5_ao481"]
+[ext_resource type="Resource" uid="uid://omn6iiom2vw3" path="res://Resources/Items/Minerals/Sulphur.tres" id="6_2wohh"]
 [ext_resource type="PackedScene" uid="uid://d1qqt21kp1l7w" path="res://Scenes/Game World/Items/Minerals/sulphur.tscn" id="6_gb310"]
 [ext_resource type="PackedScene" uid="uid://dxaiti3wqm0d0" path="res://Scenes/Game World/Items/Minerals/lead.tscn" id="7_8v3cd"]
 [ext_resource type="PackedScene" uid="uid://bexegckwnddnq" path="res://Scenes/Game World/Structures/submarine/submarine_interior.tscn" id="7_ao481"]
+[ext_resource type="Resource" uid="uid://cc5mvnuhmixwg" path="res://Resources/Items/Minerals/Lithium.tres" id="8_m3bhj"]
+[ext_resource type="Resource" uid="uid://dw3vqgmrfmuux" path="res://Resources/Items/Minerals/Lead.tres" id="10_rg656"]
 
 [sub_resource type="Gradient" id="Gradient_g1swy"]
 colors = PackedColorArray(0, 0, 0, 1, 0.59997064, 0.73147446, 1, 1)
@@ -155,24 +159,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.327171, 0, -8.389384)
 mineral_scene = ExtResource("5_ao481")
 respawn_time = 5.0
 respawn_variance = 4.0
+ItemSlotdata = ExtResource("4_7ab7m")
 
 [node name="MineralStone2" parent="MineralTesting" unique_id=1836350131 instance=ExtResource("2_g1swy")]
 transform = Transform3D(0.519549, 0, -0.8544407, 0, 1, 0, 0.8544407, 0, 0.519549, 2.5700734, 0, -9.944742)
 mineral_scene = ExtResource("6_gb310")
 respawn_time = 5.0
 respawn_variance = 4.0
+ItemSlotdata = ExtResource("6_2wohh")
 
 [node name="MineralStone3" parent="MineralTesting" unique_id=1152081797 instance=ExtResource("2_g1swy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2094269, 0, 14.772387)
 mineral_scene = ExtResource("4_1xi28")
 respawn_time = 5.0
 respawn_variance = 4.0
+ItemSlotdata = ExtResource("8_m3bhj")
 
 [node name="MineralStone4" parent="MineralTesting" unique_id=1162280339 instance=ExtResource("2_g1swy")]
 transform = Transform3D(0.44704103, 0, -0.8945134, 0, 1, 0, 0.8945134, 0, 0.44704103, 4.457616, 0, 9.429903)
 mineral_scene = ExtResource("7_8v3cd")
 respawn_time = 5.0
 respawn_variance = 4.0
+ItemSlotdata = ExtResource("10_rg656")
 
 [node name="SubmarineInterior" parent="." unique_id=396652979 instance=ExtResource("7_ao481")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.179842, 2.0622668, 0)
