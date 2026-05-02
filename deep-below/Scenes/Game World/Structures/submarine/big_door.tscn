@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crcvsmx8neehy"]
 
 [ext_resource type="PackedScene" uid="uid://ddki2mxffhuhn" path="res://Assets/3D/InEngineModels/SubmarineRooms/DoorPartTop.gltf" id="1_sfogh"]
+[ext_resource type="Script" uid="uid://cve1vc2m1e762" path="res://Scripts/Structures/big_door.gd" id="1_xqub6"]
 [ext_resource type="Material" uid="uid://3qksow8i07s1" path="res://Assets/3D/Materials/big_door_texture.tres" id="2_xqub6"]
 [ext_resource type="PackedScene" uid="uid://bimngc6ctcmyn" path="res://Assets/3D/InEngineModels/SubmarineRooms/DoorPartBottom.gltf" id="3_tcoro"]
 
@@ -71,6 +72,7 @@ _data = {
 }
 
 [node name="BigDoor" type="Node3D" unique_id=447020734]
+script = ExtResource("1_xqub6")
 
 [node name="DoorPartTop2" parent="." unique_id=1300516087 instance=ExtResource("1_sfogh")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -1.5468025, -0.5947851, 0)

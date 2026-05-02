@@ -5,7 +5,6 @@ var open = false
 var animation_playing = false
 
 func _on_detection_body_entered(_body):
-	print("detected")
 	if !open and !animation_playing and !locked:
 		$Anims.play("open")
 		animation_playing = true
