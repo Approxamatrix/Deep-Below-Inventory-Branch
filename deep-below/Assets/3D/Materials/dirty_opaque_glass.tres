@@ -1,5 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://ve6l1sk48ryh"]
 
+[ext_resource type="Material" uid="uid://dxuqb8oyr07q3" path="res://Assets/3D/Materials/dirt_specks.tres" id="1_o3j6l"]
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o58h0"]
 frequency = 0.0574
 
@@ -15,27 +17,8 @@ colors = PackedColorArray(0, 0, 0, 0, 0.7218587, 0.7218587, 0.7218587, 1)
 noise = SubResource("FastNoiseLite_iy25u")
 color_ramp = SubResource("Gradient_dysoe")
 
-[sub_resource type="Gradient" id="Gradient_ex5rk"]
-offsets = PackedFloat32Array(0.73333335, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_y6pf2"]
-frequency = 0.0346
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q265s"]
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_y6pf2")
-color_ramp = SubResource("Gradient_ex5rk")
-seamless = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yjel"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = SubResource("NoiseTexture2D_q265s")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hstus"]
-next_pass = SubResource("StandardMaterial3D_4yjel")
+next_pass = ExtResource("1_o3j6l")
 transparency = 4
 albedo_texture = SubResource("NoiseTexture2D_sa7tk")
 

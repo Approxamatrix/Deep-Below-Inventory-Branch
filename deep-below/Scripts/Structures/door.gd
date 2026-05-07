@@ -20,3 +20,15 @@ func _on_anims_animation_finished(_anim_name):
 		open = false
 	elif !open:
 		open = true
+
+func _on_input_detector_input_detected(interact_state):
+	if interact_state:
+		$ButtonClick.play()
+	#if interact_state:
+		if !open and !animation_playing and !locked:
+			$Anims.play("open")
+			animation_playing = true
+	#elif !interact_state:
+		if open and !animation_playing:
+			$Anims.play_backwards("open")
+			animation_playing = true

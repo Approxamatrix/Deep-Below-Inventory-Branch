@@ -3,6 +3,8 @@
 [ext_resource type="Material" uid="uid://boe1jwun3ibtb" path="res://Assets/3D/Materials/slightly_rusty_metal.tres" id="1_4bnc7"]
 [ext_resource type="Script" uid="uid://oque2w67xr6y" path="res://Scripts/Structures/door.gd" id="1_dtog7"]
 [ext_resource type="Material" uid="uid://ve6l1sk48ryh" path="res://Assets/3D/Materials/dirty_opaque_glass.tres" id="2_dtog7"]
+[ext_resource type="PackedScene" uid="uid://bn4f7tbyito0t" path="res://Scenes/Player/PlayerSystems/input_detector.tscn" id="4_acrio"]
+[ext_resource type="AudioStream" uid="uid://c2fbby7om3xgb" path="res://Assets/Audio/SFX/metallic_break.mp3" id="5_c8cd6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gk6xg"]
 size = Vector3(2, 3, 0.25)
@@ -116,6 +118,23 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_dtog7"]
 size = Vector3(2, 3, 2)
 
+[sub_resource type="Gradient" id="Gradient_8vb68"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6666667, 0.78431374, 1)
+colors = PackedColorArray(0.4117647, 1, 1, 0, 0, 0, 0, 0, 0.8117647, 1, 1, 0.5686275, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_acrio"]
+gradient = SubResource("Gradient_8vb68")
+width = 512
+height = 512
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c8cd6"]
+size = Vector3(2, 3, 0.5)
+
 [node name="Door" type="Node3D" unique_id=146931857]
 script = ExtResource("1_dtog7")
 
@@ -159,16 +178,35 @@ debug_fill = false
 [node name="Anims" type="AnimationPlayer" parent="." unique_id=90294093]
 libraries/ = SubResource("AnimationLibrary_dtog7")
 
-[node name="Detection" type="Area3D" parent="." unique_id=1420727863]
+[node name="Detection(Disabled)" type="Area3D" parent="." unique_id=1420727863]
+visible = false
 collision_layer = 0
 collision_mask = 2
+monitoring = false
+monitorable = false
 
-[node name="Hitbox" type="CollisionShape3D" parent="Detection" unique_id=209388412]
+[node name="Hitbox" type="CollisionShape3D" parent="Detection(Disabled)" unique_id=209388412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.17643082)
 shape = SubResource("BoxShape3D_dtog7")
 debug_color = Color(1, 0.64705884, 0, 0.3764706)
 debug_fill = false
 
+[node name="InputDetector" parent="." unique_id=1830051855 instance=ExtResource("4_acrio")]
+indicator_texture = SubResource("GradientTexture2D_acrio")
+singular_output = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="InputDetector" unique_id=1525894105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.17280543)
+shape = SubResource("BoxShape3D_c8cd6")
+debug_color = Color(1, 1, 0, 0.58431375)
+debug_fill = false
+
+[node name="ButtonClick" type="AudioStreamPlayer3D" parent="." unique_id=601303655]
+stream = ExtResource("5_c8cd6")
+pitch_scale = 4.0
+panning_strength = 0.0
+
 [connection signal="animation_finished" from="Anims" to="." method="_on_anims_animation_finished"]
-[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
-[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
+[connection signal="body_entered" from="Detection(Disabled)" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection(Disabled)" to="." method="_on_detection_body_exited"]
+[connection signal="input_detected" from="InputDetector" to="." method="_on_input_detector_input_detected"]

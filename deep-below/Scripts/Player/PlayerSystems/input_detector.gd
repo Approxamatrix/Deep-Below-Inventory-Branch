@@ -9,13 +9,15 @@ extends Area3D
 @onready var movement_disabler = $MovementDisabler/Hitbox
 
 @export_group("Indicator Texture Settings")
+@export var indicator_enabled = true##Choose whether to show an indicator texture when you can interact or not.
 @export var indicator_texture : Texture2D##This texture will appear whenever the player is within range of the input detector (Note the texture must be 512x512 or less, otherwise it will be too large and may be clipped out of view)
 @export_range(0,2,1) var indicator_anchor : int##Determines were the indicator texture will be placed, 0 is top left, 1 is top center, 2 is top right
 @export_group("SFX Settings")
 @export var audio_bus : String = "Master"##The bus you want the interaction sound effect to use. Please ensure you spell the name of the bus correctly
 @export var interaction_sound : AudioStream##Whatever audio is placed here will play whenever the "input_detected" signal is emitted
 @export_category("Extras")
-@export var disabled = false
+@export var singular_output = false##When active, will only ever output a "true" bool value in the "input detected" signal
+@export var disabled = false##Disables the input detector entirely
 @export var enable_mouse_on_interact = false##If enabled then the mouse is made visible, and will disappear again once the player either exits or is out of range
 @export var enable_debug_mode : bool = false##Used for debugging, makes bright particles appear to indicate whenever input has been detected. The "interact state" will also be reflected in the color of the particles, green for true, red for false.
 @export var custom_input_keybind : String##If you want the node to detect an input other than interaction(E/left-click), change this to whatever input you want (assuming you've added it to the inputmap in the project settings). Will default to the "interact" keybind if left blank 
@@ -59,14 +61,13 @@ func _unhandled_input(_event):
 		close()
 
 func _on_body_entered(_body):
-	if !disabled:
+	if !disabled and indicator_enabled:
 		in_range = true
 		indicator_sprite.visible = true
 
 func _on_body_exited(_body):
 	in_range = false
 	indicator_sprite.visible = false
-	#if object_interact_state:
 	close()
 
 func open():
@@ -87,5 +88,8 @@ func close():
 	debug_particles.process_material.color = Color("ff0000ff")
 	if enable_debug_mode:
 		debug_particles.emitting = true
-	input_detected.emit(object_interact_state)
+	if !singular_output:
+		input_detected.emit(object_interact_state)
+	elif singular_output:
+		input_detected.emit(true)
 	movement_disabler.position.y = 999

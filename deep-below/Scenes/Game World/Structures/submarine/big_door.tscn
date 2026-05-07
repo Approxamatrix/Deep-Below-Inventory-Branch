@@ -98,3 +98,5 @@ debug_fill = false
 
 [node name="DoorAnims" type="AnimationPlayer" parent="." unique_id=2025499265]
 libraries/ = SubResource("AnimationLibrary_y6pf2")
+
+[connection signal="animation_finished" from="DoorAnims" to="." method="_on_door_anims_animation_finished"]

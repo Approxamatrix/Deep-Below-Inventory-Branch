@@ -84,6 +84,8 @@ metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="SubViewport" parent="Downscaler" unique_id=1508529881]
 handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(960, 540)
 render_target_update_mode = 4
 

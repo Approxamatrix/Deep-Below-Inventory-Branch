@@ -1,0 +1,218 @@
+[gd_scene format=3 uid="uid://cwxwdk0yshbke"]
+
+[ext_resource type="Script" uid="uid://4dg3leq5ho6i" path="res://Scripts/Interactables/toggle_button.gd" id="1_1tt8t"]
+[ext_resource type="Material" uid="uid://boe1jwun3ibtb" path="res://Assets/3D/Materials/slightly_rusty_metal.tres" id="1_rnhbj"]
+[ext_resource type="AudioStream" uid="uid://c2fbby7om3xgb" path="res://Assets/Audio/SFX/metallic_break.mp3" id="3_saq03"]
+[ext_resource type="PackedScene" uid="uid://bn4f7tbyito0t" path="res://Scenes/Player/PlayerSystems/input_detector.tscn" id="4_jr2pa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1tt8t"]
+size = Vector3(0.5, 1, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_saq03"]
+size = Vector3(0.35, 0.35, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jr2pa"]
+transparency = 4
+cull_mode = 2
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 0.9254902)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va11n"]
+transparency = 4
+cull_mode = 2
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 0.9254902)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="Animation" id="Animation_lsjqq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/Button2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.2, -0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/Button2:surface_material_override/0:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/Button1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.2, -0.15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonBase/Button1:surface_material_override/0:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonClick:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fn6gn"]
+resource_name = "toggle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/Button2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, -0.2, -0.1), Vector3(0, -0.2, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/Button2:surface_material_override/0:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/Button1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0.2, -0.15), Vector3(0, 0.2, -0.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonBase/Button1:surface_material_override/0:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonClick:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2smwi"]
+_data = {
+&"RESET": SubResource("Animation_lsjqq"),
+&"toggle": SubResource("Animation_fn6gn")
+}
+
+[sub_resource type="Gradient" id="Gradient_8vb68"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6666667, 0.78431374, 1)
+colors = PackedColorArray(0.4117647, 1, 1, 0, 0, 0, 0, 0, 0.8117647, 1, 1, 0.5686275, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jr2pa"]
+gradient = SubResource("Gradient_8vb68")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va11n"]
+size = Vector3(0.75, 1.25, 0.25)
+
+[node name="ToggleButton" type="Node3D" unique_id=1774756877]
+script = ExtResource("1_1tt8t")
+
+[node name="ButtonBase" type="MeshInstance3D" parent="." unique_id=1805732454]
+mesh = SubResource("BoxMesh_1tt8t")
+surface_material_override/0 = ExtResource("1_rnhbj")
+
+[node name="Button1" type="MeshInstance3D" parent="ButtonBase" unique_id=1679267965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.15)
+mesh = SubResource("BoxMesh_saq03")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jr2pa")
+
+[node name="Button2" type="MeshInstance3D" parent="ButtonBase" unique_id=550362688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.1)
+mesh = SubResource("BoxMesh_saq03")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_va11n")
+
+[node name="Anims" type="AnimationPlayer" parent="." unique_id=226894429]
+libraries/ = SubResource("AnimationLibrary_2smwi")
+speed_scale = 4.0
+
+[node name="ButtonClick" type="AudioStreamPlayer3D" parent="." unique_id=2113093520]
+stream = ExtResource("3_saq03")
+pitch_scale = 4.0
+panning_strength = 0.0
+
+[node name="InputDetector" parent="." unique_id=1830051855 instance=ExtResource("4_jr2pa")]
+indicator_texture = SubResource("GradientTexture2D_jr2pa")
+singular_output = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="InputDetector" unique_id=250452564]
+shape = SubResource("BoxShape3D_va11n")
+debug_color = Color(0.39688927, 0.39688927, 0.39688924, 0.41960785)
+debug_fill = false
+
+[connection signal="input_detected" from="InputDetector" to="." method="_on_input_detector_input_detected"]
